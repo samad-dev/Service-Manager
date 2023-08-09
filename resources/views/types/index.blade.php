@@ -52,8 +52,7 @@
                                             <h4 class="card-title mb-0 pt-3">Types</h4>
                                         </div>
                                         <div class="col-md-6">
-                                            <button type="button" class="btn btn-soft-primary waves-effect waves-light"
-                                                data-bs-toggle="modal" data-bs-target="#myModal">
+                                            <button type="button" class="btn btn-soft-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#myModal">
                                                 <i class="bx bxs-add-to-queue font-size-16 align-middle me-2"></i> Add
                                                 New
                                             </button>
@@ -117,8 +116,7 @@
                     <div class="mb-3 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">Title</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="text" placeholder="Enter Title"
-                                id="example-text-input">
+                            <input class="form-control" type="text" placeholder="Enter Title" id="example-text-input">
                         </div>
                     </div>
                 </div>
@@ -127,9 +125,7 @@
                         <label for="example-text-input" class="col-md-2 col-form-label">Parent</label>
                         <div class="col-md-10">
 
-                            <select class="form-control" data-trigger name="choices-single-default"
-                                id="choices-single-default" placeholder="This is a search placeholder">
-
+                            <select class="form-control" data-trigger name="choices-single-default" id="choices-single-default" placeholder="This is a search placeholder">
                             </select>
 
                         </div>
@@ -139,9 +135,7 @@
                     <div class="mb-3 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">Parent</label>
                         <div class="col-md-10">
-
-                            <select class="form-control" data-trigger name="choices-single-default"
-                                id="choices-single-default" placeholder="This is a search placeholder">
+                            <select class="form-control" data-trigger name="choices-single-default" id="choices-single-default" placeholder="This is a search placeholder">
 
                             </select>
 
@@ -152,13 +146,14 @@
 
         </div>
     </div>
-
-    <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
-        data-bs-scroll="true">
+    <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" data-bs-scroll="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel">Create Type</h5>
+                    <h5 class="modal-title" id="myModalLabel">
+                        <h5 id="labelc">Create</h5>
+                        <h5>Type</h5>
+                    </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -167,8 +162,7 @@
                             <div class="mb-3 row">
                                 <label for="example-text-input" class="col-md-2 col-form-label">Title</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="text" required placeholder="Enter Title"
-                                        id="example-text-input-title">
+                                    <input class="form-control" type="text" required placeholder="Enter Title" id="example-text-input-title">
                                 </div>
                             </div>
                         </div>
@@ -176,23 +170,25 @@
                             <div class="mb-3 row">
                                 <label for="example-text-input" class="col-md-2 col-form-label">Parent</label>
                                 <div class="col-md-10">
-
-                                    <select class="form-control" id="parent" name="parent"
-                                        placeholder="Select Parent">
-
+                                    <select class="form-control" id="parent" name="parent" placeholder="Select Parent">
                                     </select>
 
                                 </div>
                             </div>
                         </div>
-
+                        <div class="col-12">
+                            <div class="mb-3 row">
+                                <div class="col-md-10">
+                                    <input class="form-control" type="hidden" id="hidden" name="hidden" value="0">
+                                    <!-- <input type="hidden" id="postId" name="postId" value="34657" /> -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button"class="btn btn-secondary waves-effect"
-                        data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="button" onclick="submit()" name="button"
-                        class="btn btn-primary waves-effect waves-light">Save changes</button>
+                    <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="button" onclick="submit()" name="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -259,8 +255,8 @@
             $.each(response, function(index, data) {
                 table.row.add([
                     data.company,
-                    data.parent,
                     data.title,
+                    data.parent,
                     '<button type="button"id="edit" name="edit"  onclick="editData(' +
                     data.id +
                     ')"  class="btn btn-soft-warning waves-effect waves-light"><i class="bx bx-edit-alt font-size-16 align-middle"></i></button>',
@@ -275,61 +271,121 @@
 
 
     function submit() {
-        var parent_id = $('#parent').find(":selected").val();
+        var update_id = document.getElementById("hidden").value;
+        console.log(update_id);
+        if (update_id == 0) {
+            var parent_id = $('#parent').find(":selected").val();
 
-        var form = new FormData();
-        form.append("company_id", "1");
-        form.append("title", document.getElementById('example-text-input-title').value);
-        form.append("parent_id", parent_id);
-        form.append("active", "1");
+            var form = new FormData();
+            form.append("company_id", "1");
+            form.append("title", document.getElementById('example-text-input-title').value);
+            form.append("parent_id", parent_id);
+            form.append("active", "1");
 
 
-        var settings = {
-            "url": "http://localhost:8000/api/types",
-            "method": "POST",
-            "timeout": 0,
-            "processData": false,
-            "mimeType": "multipart/form-data",
-            "contentType": false,
-            "data": form
-        };
+            var settings = {
+                "url": "http://localhost:8000/api/types",
+                "method": "POST",
+                "timeout": 0,
+                "processData": false,
+                "mimeType": "multipart/form-data",
+                "contentType": false,
+                "data": form
+            };
 
-        $.ajax({
-            ...settings,
-            statusCode: {
-                200: function(response) {
-                    console.log(response);
-                    $('#myModal').modal('hide');
-                    console.log("Request was successful");
-                    fetchtable();
-                    Swal.fire(
-                        'Success!',
-                        'Type Created Successfully',
-                        'success'
-                    )
+            $.ajax({
+                ...settings,
+                statusCode: {
+                    200: function(response) {
+                        console.log(response);
+                        $('#myModal').modal('hide');
+                        console.log("Request was successful");
+                        document.getElementById('example-text-input-title').value = "";
+
+                        fetchtable();
+                        Swal.fire(
+                            'Success!',
+                            'Type Created Successfully',
+                            'success'
+                        )
+                    },
+                    // Add more status code handlers as needed
                 },
-                // Add more status code handlers as needed
-            },
-            success: function(data) {
-                // Additional success handling if needed
-            },
-            error: function(xhr, textStatus, errorThrown) {
-                Swal.fire(
-                    'Server Error!',
-                    'Type Not Created',
-                    'error'
-                )
+                success: function(data) {
+                    // $('#myModal').reset();
+                    // Additional success handling if needed
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    Swal.fire(
+                        'Server Error!',
+                        'Type Not Created',
+                        'error'
+                    )
 
-                // console.log("Request failed with status code: " + xhr.status);
-            }
-        });
+                    // console.log("Request failed with status code: " + xhr.status);
+                }
+            });
+
+        } else {
+            var parent_id = $('#parent').find(":selected").val();
+            var settings = {
+                "url": "http://localhost:8000/api/types/" + update_id + "",
+                "method": "PUT",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "data": JSON.stringify({
+                    "company_id": 0,
+                    "title": document.getElementById('example-text-input-title').value,
+                    "parent_id": parent_id,
+                    "active": 1
+                }),
+            };
+
+            $.ajax({
+                ...settings,
+                statusCode: {
+                    200: function(response) {
+                        console.log(response);
+                        $('#myModal').modal('hide');
+                        document.getElementById('example-text-input-title').value = "";
+                        // console.log("Request was successful");
+                        fetchtable();
+                        Swal.fire(
+                            'Success!',
+                            'Type updated Successfully',
+                            'success'
+                        )
+                    },
+                    // Add more status code handlers as needed
+                },
+                success: function(data) {
+                    // Additional success handling if needed
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    Swal.fire(
+                        'Server Error!',
+                        'Type Not updated',
+                        'error'
+                    )
+
+                    // console.log("Request failed with status code: " + xhr.status);
+                }
+            });
+
+
+
+            // alert("Update Records Here");
+
+        }
 
     }
 
     function editData(id) {
         // alert(id);
         var settings = {
-            "url": "http://localhost:8000/api/types/"+id+"",
+            "url": "http://localhost:8000/api/types/" + id + "",
             "method": "GET",
             "timeout": 0,
         };
@@ -340,8 +396,10 @@
                 200: function(response) {
                     console.log(response[0]['title']);
                     document.getElementById('example-text-input-title').value = response[0]['title'];
+                    document.getElementById('hidden').value = response[0]['id'];
                     $("#parent").val(response[0]['parent']);
                     $('#myModal').modal('show');
+                    document.getElementById("labelc").innerHTML = 'Update'
 
 
                 },
@@ -385,7 +443,7 @@
                     fetchtable();
                     Swal.fire(
                         'Success!',
-                        'Type Created Successfully',
+                        'Type Deleted Successfully',
                         'success'
                     )
                 },

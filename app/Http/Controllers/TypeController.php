@@ -8,7 +8,7 @@ class TypeController extends Controller
 {
     public function index()
     {
-        $types = DB::select('SELECT CASE WHEN t1.company_id = "0" THEN "System" ELSE t1.company_id END as company, t1.id, t1.title, t1.parent_id, t2.title as parent FROM types t1 LEFT JOIN types t2 ON t1.id = t2.parent_id');
+        $types = DB::select('SELECT CASE WHEN t1.company_id = "0" THEN "System" ELSE t1.company_id END as company, t1.id, t1.title, t1.parent_id, t2.title as parent FROM types t1 left JOIN types t2 ON t1.parent_id = t2.id');
         return response()->json($types);
     }
 
