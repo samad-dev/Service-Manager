@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TypeController;
+use App\Http\Controllers\StatusController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,10 +18,18 @@ use App\Http\Controllers\TypeController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+///TYPES CONTROLLER
 Route::get('types',  [TypeController::class, 'index']);
 Route::get('companytype/{id}',  [TypeController::class, 'companywise']);
 Route::post('types', [TypeController::class, 'store']);
 Route::get('types/{id}', [TypeController::class, 'show']);
 Route::put('types/{id}', [TypeController::class, 'update']);
 Route::delete('types/{id}',[TypeController::class, 'destroy'] );
+
+///STATUS CONTROLLER
+Route::get('status', [StatusController::class, 'index']);
+Route::post('status', [StatusController::class, 'store']);
+Route::get('status/{id}', [StatusController::class, 'show']);
+Route::get('status/company/{id}', [StatusController::class, 'companywise']);
+Route::put('status/{id}', [StatusController::class, 'update']);
+Route::delete('status/{id}', [StatusController::class, 'destroy']);
