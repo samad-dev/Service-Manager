@@ -8,6 +8,8 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\BuGroupController;
 use App\Http\Controllers\GroupMemberController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\BusinessUnitController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -63,10 +65,26 @@ Route::get('bu_groups/company/{id}', [BuGroupController::class, 'companywise']);
 Route::put('bu_groups/{id}', [BuGroupController::class, 'update']);
 Route::delete('bu_groups/{id}', [BuGroupController::class, 'destroy']);
 
-
+///GROUP MEMBERS CONTROLLER///
 Route::get('group-members', [GroupMemberController::class, 'index']);
 Route::post('group-members', [GroupMemberController::class, 'store']);
 Route::get('group-members/{id}', [GroupMemberController::class, 'show']);
 Route::get('group-members/group/{id}', [GroupMemberController::class, 'companywise']);
 Route::put('group-members/{id}', [GroupMemberController::class, 'update']);
 Route::delete('group-members/{id}', [GroupMemberController::class, 'destroy']);
+
+//USER CONTROLLER//
+Route::get('users', [UserController::class, 'index']);
+Route::post('users', [UserController::class, 'store']);
+Route::get('users/{id}', [UserController::class, 'show']);
+Route::get('users/company/{id}', [UserController::class, 'companywise']);
+Route::put('users/{id}', [UserController::class, 'update']);
+Route::delete('users/{id}', [UserController::class, 'destroy']);
+
+///Business Unit Controller//
+Route::get('business_units', [BusinessUnitController::class, 'index']);
+Route::post('business_units', [BusinessUnitController::class, 'store']);
+Route::get('business_units/{id}', [BusinessUnitController::class, 'show']);
+Route::get('business_units/company/{id}', [BusinessUnitController::class, 'companywise']);
+Route::put('business_units/{id}', [BusinessUnitController::class, 'update']);
+Route::delete('business_units/{id}', [BusinessUnitController::class, 'destroy']);

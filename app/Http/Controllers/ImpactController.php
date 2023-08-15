@@ -9,7 +9,7 @@ class ImpactController extends Controller
 {
     public function index()
     {
-        $impacts = DB::select('SELECT * FROM impacts');
+        $impacts = DB::select('SELECT s.*,IFNULL(c.name,"System") as company FROM `impacts` s left join company c on s.company_id = c.id;');
         return response()->json($impacts);
     }
 

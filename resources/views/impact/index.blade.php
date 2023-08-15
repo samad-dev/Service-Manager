@@ -181,7 +181,7 @@
             table.clear().draw();
             $.each(response, function(index, data) {
                 table.row.add([
-                    data.company_id,
+                    data.company,
                     data.title,
                     '<button type="button"id="edit" name="edit"  onclick="editData(' +
                     data.id +
@@ -199,7 +199,7 @@
         console.log(update_id);
         if (update_id == 0) {
             var form = new FormData();
-            form.append("company_id", "1");
+            form.append("company_id", "0");
             form.append("title", document.getElementById('example-text-input').value);
             form.append("active", "1");
 
