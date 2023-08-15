@@ -107,7 +107,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel">Create Priority</h5>
+                    <!-- <h5 class="modal-title" id="myModalLabel">Create Priority</h5> -->
+                    <h5 class="modal-title" id="myModalLabel">
+                        <h5 id="labelc">Create</h5>
+                        <br>
+                        <h5>Priority</h5>
+                    </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -124,7 +129,7 @@
                             <div class="mb-3 row">
                                 <label for="example-text-input" class="col-md-2 col-form-label">SLA</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="text" placeholder="Enter SLA" id="example-text-input">
+                                    <input class="form-control" type="text" placeholder="Enter SLA" id="sla">
                                 </div>
                             </div>
                         </div>
@@ -150,30 +155,30 @@
     @include("partials.script")
 </body>
 <script>
-    var table = 
-    $(document).ready(function() {
-       table=  $('#myTable').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-                'colvis',
-                {
-                    extend: 'csv',
-                    // Add the custom class to the CSV button
-                },
-                {
-                    extend: 'excel', // Add the custom class to the Excel button
-                },
-                {
-                    extend: 'pdf', // Add the custom class to the Excel button
-                },
-                {
-                    extend: 'print', // Add the custom class to the Excel button
-                }
-                // Add more buttons and classes as needed
-            ]
+    var table =
+        $(document).ready(function() {
+            table = $('#myTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'colvis',
+                    {
+                        extend: 'csv',
+                        // Add the custom class to the CSV button
+                    },
+                    {
+                        extend: 'excel', // Add the custom class to the Excel button
+                    },
+                    {
+                        extend: 'pdf', // Add the custom class to the Excel button
+                    },
+                    {
+                        extend: 'print', // Add the custom class to the Excel button
+                    }
+                    // Add more buttons and classes as needed
+                ]
+            });
+            fetchtable();
         });
-        fetchtable();
-    });
 
     function fetchtable() {
         var settings = {
@@ -207,9 +212,9 @@
         if (update_id == 0) {
             var form = new FormData();
             form.append("company_id", "0");
-            form.append("title", "High");
+            form.append("title", document.getElementById('example-text-input').value);
             form.append("active", "1");
-            form.append("sla", "32");
+            form.append("sla", document.getElementById('sla').value);
 
             var settings = {
                 "url": "http://localhost:8000/api/priority",
@@ -253,6 +258,7 @@
                 }
             });
         } else {
+            alert(update_id);
             var settings = {
                 "url": "http://localhost:8000/api/priority/" + update_id + "",
                 "method": "PUT",
@@ -263,8 +269,8 @@
                 "data": JSON.stringify({
                     "company_id": 0,
                     "title": document.getElementById('example-text-input').value,
-                    "sla_id": sla_id,
-                    "active": 1
+                    "active": 1,
+                    "sla": document.getElementById('sla').value
                 }),
             };
 
@@ -305,6 +311,82 @@
             // alert("Update Records Here");
 
         }
+    }
+
+    function editData(id) {
+        // alert(id);
+        var settings = {
+            "url": "http://localhost:8000/api/priority/" + id + "",
+            "method": "GET",
+            "timeout": 0,
+        };
+
+        $.ajax({
+            ...settings,
+            statusCode: {
+                200: function(response) {
+                    // console.log(response[0]['title']);
+                    document.getElementById('example-text-input').value = response[0]['title'];
+                    document.getElementById('hidden').value = response[0]['id'];
+                    $("#sla").val(response[0]['sla']);
+                    $('#myModal').modal('show');
+                    document.getElementById("labelc").innerHTML = 'Update'
+
+
+                },
+                // Add more status code handlers as needed
+            },
+            success: function(data) {
+                // Additional success handling if needed
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                Swal.fire(
+                    'Server Error!',
+                    '',
+                    'error'
+                )
+
+                // console.log("Request failed with status code: " + xhr.status);
+            }
+        });
+
+    }
+
+    function deleteData(id) {
+        var settings = {
+            "url": "http://localhost:8000/api/priority/ " + id + "",
+            "method": "DELETE",
+            "timeout": 0,
+        };
+        $.ajax({
+            ...settings,
+            statusCode: {
+                200: function(response) {
+                    console.log(response);
+                    // $('#myModal').modal('hide');
+                    // console.log("Request was successful");
+                    fetchtable();
+                    Swal.fire(
+                        'Success!',
+                        'Type Deleted Successfully',
+                        'success'
+                    )
+                },
+                // Add more status code handlers as needed
+            },
+            success: function(data) {
+                // Additional success handling if needed
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                Swal.fire(
+                    'Server Error!',
+                    'Type Not Deleted',
+                    'error'
+                )
+
+                // console.log("Request failed with status code: " + xhr.status);
+            }
+        });
     }
 </script>
 
