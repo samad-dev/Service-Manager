@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ImpactController;
+use App\Http\Controllers\PriorityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TypeController;
@@ -33,3 +35,21 @@ Route::get('status/{id}', [StatusController::class, 'show']);
 Route::get('status/company/{id}', [StatusController::class, 'companywise']);
 Route::put('status/{id}', [StatusController::class, 'update']);
 Route::delete('status/{id}', [StatusController::class, 'destroy']);
+
+///PRIORITY CONTROLLER
+Route::get('priority', [PriorityController::class, 'index']);
+Route::post('priority', [PriorityController::class, 'store']);
+Route::get('priority/{id}', [PriorityController::class, 'show']);
+Route::get('priority/company/{id}', [PriorityController::class, 'companywise']);
+Route::put('priority/{id}', [PriorityController::class, 'update']);
+Route::delete('priority/{id}', [PriorityController::class, 'destroy']);
+
+
+
+///IMPACTS CONTROLLER
+Route::get('impacts', [ImpactController::class, 'index']);
+Route::post('impacts', [ImpactController::class, 'store']);
+Route::get('impacts/{id}', [ImpactController::class, 'show']);
+Route::get('impacts/company/{id}', [ImpactController::class, 'companywise']);
+Route::put('impacts/{id}', [ImpactController::class, 'update']);
+Route::delete('impacts/{id}', [ImpactController::class, 'destroy']);

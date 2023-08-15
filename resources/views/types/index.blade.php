@@ -67,6 +67,7 @@
                                     <table id="myTable">
                                         <thead>
                                             <tr>
+                                                <th>S.No</th>
                                                 <th>Company</th>
                                                 <th>Title</th>
                                                 <th>Parent</th>
@@ -264,6 +265,7 @@
             table.clear().draw();
             $.each(response, function(index, data) {
                 table.row.add([
+                    index+1,
                     data.company,
                     data.title,
                     data.parent,
