@@ -33,6 +33,12 @@ class BuGroupController extends Controller
         return response()->json(['message' => 'BU group updated successfully']);
     }
 
+    public function companywise($id)
+    {
+        $status = DB::select('SELECT * FROM bu_group WHERE company_id = ?', [$id]);
+        return response()->json($status);
+    }
+
     public function destroy($id)
     {
         DB::delete('DELETE FROM bu_group WHERE id = ?', [$id]);

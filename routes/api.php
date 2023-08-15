@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\BuGroupController;
+use App\Http\Controllers\GroupMemberController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -61,3 +62,11 @@ Route::get('bu_groups/{id}', [BuGroupController::class, 'show']);
 Route::get('bu_groups/company/{id}', [BuGroupController::class, 'companywise']);
 Route::put('bu_groups/{id}', [BuGroupController::class, 'update']);
 Route::delete('bu_groups/{id}', [BuGroupController::class, 'destroy']);
+
+
+Route::get('group-members', [GroupMemberController::class, 'index']);
+Route::post('group-members', [GroupMemberController::class, 'store']);
+Route::get('group-members/{id}', [GroupMemberController::class, 'show']);
+Route::get('group-members/group/{id}', [GroupMemberController::class, 'companywise']);
+Route::put('group-members/{id}', [GroupMemberController::class, 'update']);
+Route::delete('group-members/{id}', [GroupMemberController::class, 'destroy']);
