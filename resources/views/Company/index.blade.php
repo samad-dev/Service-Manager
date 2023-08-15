@@ -59,10 +59,7 @@
                                             {{-- <button type="button" class="btn btn-soft-primary waves-effect waves-light"  data-bs-toggle="modal" data-bs-target="#myModal">
                                                      Add New
                                                 </button> --}}
-                                            <button class="btn btn-soft-primary waves-effect waves-light" type="button"
-                                                data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                                                aria-controls="offcanvasRight"><i
-                                                    class="bx bxs-add-to-queue font-size-16 align-middle me-2"></i>Add
+                                            <button class="btn btn-soft-primary waves-effect waves-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bx bxs-add-to-queue font-size-16 align-middle me-2"></i>Add
                                                 New</button>
                                             {{-- <button type="button" class="btn btn-primary waves-effect waves-light">Add New</button> --}}
                                         </div>
@@ -118,212 +115,164 @@
         <hr>
         <div class="offcanvas-body">
             <div class="row">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingnameInput" placeholder="Enter Name">
-                            <label for="floatingnameInput">Name</label>
-                        </div>
+                <div class="col-lg-4">
+                    <div class="mb-3">
+                        <label for="formrow-firstname" class="form-label">Enter Fist Name</label>
+                        <input type="text" class="form-control" placeholder="Enter First Name" id="formrow-inputCity">
                     </div>
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label for="formrow-email" class="form-label"> Owner Middle Name</label>
-                            <input type="text" class="form-control" placeholder=" Owner Middle Name"
-                                id="formrow-inputCity">
-                        </div>
-                    </div>  
+                </div>
+                <div class="col-lg-4">
+                    <div class="mb-3">
+                        <label for="formrow-firstname" class="form-label">Enter Middle Name</label>
+                        <input type="text" class="form-control" placeholder="Enter First Name" id="formrow-inputCity">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="mb-3">
+                        <label for="formrow-firstname" class="form-label">Enter Last Name</label>
+                        <input type="text" class="form-control" placeholder="Enter First Name" id="formrow-inputCity">
+                    </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label for="formrow-firstname" class="form-label"> Owner First Name</label>
-                            <input type="text" class="form-control" placeholder=" Owner First Name"
-                                id="formrow-inputCity">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label for="formrow-email" class="form-label"> Owner Middle Name</label>
-                            <input type="text" class="form-control" placeholder=" Owner Middle Name"
-                                id="formrow-inputCity">
-                        </div>
-                    </div>  
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label for="formrow-firstname" class="form-label"> Owner First Name</label>
-                            <input type="text" class="form-control" placeholder=" Owner First Name"
-                                id="formrow-inputCity">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label for="formrow-email" class="form-label"> Owner Middle Name</label>
-                            <input type="text" class="form-control" placeholder=" Owner Middle Name"
-                                id="formrow-inputCity">
-                        </div>
-                    </div>  
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label for="formrow-firstname" class="form-label"> Owner First Name</label>
-                            <input type="text" class="form-control" placeholder=" Owner First Name"
-                                id="formrow-inputCity">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label for="formrow-email" class="form-label"> Owner Middle Name</label>
-                            <input type="text" class="form-control" placeholder=" Owner Middle Name"
-                                id="formrow-inputCity">
-                        </div>
-                    </div>  
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label for="formrow-firstname" class="form-label"> Owner First Name</label>
-                            <input type="text" class="form-control" placeholder=" Owner First Name"
-                                id="formrow-inputCity">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label for="formrow-email" class="form-label"> Owner Middle Name</label>
-                            <input type="text" class="form-control" placeholder=" Owner Middle Name"
-                                id="formrow-inputCity">
-                        </div>
-                    </div>  
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label for="formrow-firstname" class="form-label"> Owner First Name</label>
-                            <input type="text" class="form-control" placeholder=" Owner First Name"
-                                id="formrow-inputCity">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label for="formrow-email" class="form-label"> Owner Middle Name</label>
-                            <input type="text" class="form-control" placeholder=" Owner Middle Name"
-                                id="formrow-inputCity">
-                        </div>
-                    </div>  
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label for="formrow-firstname" class="form-label"> Owner First Name</label>
-                            <input type="text" class="form-control" placeholder=" Owner First Name"
-                                id="formrow-inputCity">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label for="formrow-email" class="form-label"> Owner Middle Name</label>
-                            <input type="text" class="form-control" placeholder=" Owner Middle Name"
-                                id="formrow-inputCity">
-                        </div>
-                    </div>  
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label for="formrow-firstname" class="form-label"> Owner First Name</label>
-                            <input type="text" class="form-control" placeholder=" Owner First Name"
-                                id="formrow-inputCity">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label for="formrow-email" class="form-label"> Owner Middle Name</label>
-                            <input type="text" class="form-control" placeholder=" Owner Middle Name"
-                                id="formrow-inputCity">
-                        </div>
-                    </div>  
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label for="formrow-firstname" class="form-label"> Owner First Name</label>
-                            <input type="text" class="form-control" placeholder=" Owner First Name"
-                                id="formrow-inputCity">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="mb-3">
-                            <label for="formrow-email" class="form-label"> Owner Middle Name</label>
-                            <input type="text" class="form-control" placeholder=" Owner Middle Name"
-                                id="formrow-inputCity">
-                        </div>
-                    </div>  
-                </div>
-                    
 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="mb-6">
-                                <label for="example-text-input" class="col-md-2 col-form-label">Description</label>
-                                <div class="col-md-10">
-                                    <textarea class="form-control" name="description" spellcheck="false">                    
-                                    </textarea>
-                                </div>
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-email" class="form-label">Enter Mobile Number</label>
+                            <input type="text" class="form-control" placeholder="Enter Enter Email" id="formrow-inputCity">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-phone" class="form-label">Enter Company Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Phone" id="formrow-inputZip">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-inputCity" class="form-label">Enter Email</label>
+                            <input type="text" class="form-control" placeholder="Enter Alternate Phone" id="formrow-inputCity">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-inputCity" class="form-label">Registration Number</label>
+                            <input type="text" class="form-control" placeholder="Enter Address 1" id="formrow-inputCity">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-inputZip" class="form-label">Telephone</label>
+                            <input type="text" class="form-control" placeholder="Enter Address 2" id="formrow-inputZip">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-Latitude" class="form-label">Website</label>
+                            <input type="text" class="form-control" placeholder="Enter Latitude" id="formrow-inputCity">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-Longitude" class="form-label">Communication Channel</label>
+                            <div class="col-md-12">
+                                <select class="form-control" data-trigger name="choices-single-default" id="formrow-inputState" placeholder="This is a search placeholder">
+
+                                </select>
                             </div>
                         </div>
                     </div>
 
-                        {{-- <div class="col-12">
-                            <div class="mb-3 row">
-                                <label for="example-text-input" class="col-md-2 col-form-label">Description</label>
-                                <div class="col-md-10">
-                                    <textarea class="form-control" name="description" spellcheck="false">                    
-                                    </textarea>
-                                </div>
-                            </div>
-                        </div> --}}
-                        {{-- <div class="card-body">
-                            <div>
-                                <form action="#" class="dropzone dz-clickable">
-                                    
-                                    <div class="dz-message needsclick">
-                                        <div class="mb-3">
-                                            <i class="display-4 text-muted mdi mdi-cloud-upload"></i>
-                                        </div>
-                                        
-                                        <h4>Drop files here or click to upload.</h4>
-                                    </div>
-                                </form>
-                            </div>
-                        </div> --}}
-                        <div class="col-12">
-                            <div class="mb-3 row">
-                                {{-- <label for="example-text-input" class="col-md-2 col-form-label">Domain Members</label> --}}
-                                <div class="col-md-6">
-                                    <div id="fields">
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-city" class="form-label">Domain</label>
+                            <div class="col-md-12">
+                                <select class="form-control" data-trigger name="choices-single-default" id="formrow-inputState" placeholder="This is a search placeholder">
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="mb-3 row">
-                                <label for="example-text-input" class="col-md-10 col-form-label"></label>
-                                <div class="col-md-2">
-
-                                    <button type="button"
-                                        class="btn btn-primary waves-effect waves-light">Save</button>
-                                </div>
+                                </select>
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-State" class="form-label">Number of Licences</label>
+                            <input type="text" class="form-control" placeholder="Enter State" id="formrow-inputCity">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-Country" class="form-label">Datalines</label>
+                            <input type="text" class="form-control" placeholder="Enter Country" id="formrow-inputZip">
+                        </div>
+                    </div>
 
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-inputZip" class="form-label">Telebox</label>
+                            <input type="text" class="form-control" placeholder="Enter Zip" id="formrow-inputZip">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-State" class="form-label">Address 1</label>
+                            <input type="text" class="form-control" placeholder="Enter State" id="formrow-inputCity">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-Country" class="form-label">Address 2</label>
+                            <input type="text" class="form-control" placeholder="Enter Country" id="formrow-inputZip">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-inputZip" class="form-label">Latitude</label>
+                            <input type="text" class="form-control" placeholder="Enter Zip" id="formrow-inputZip">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-State" class="form-label">Longitude </label>
+                            <input type="text" class="form-control" placeholder="Enter State" id="formrow-inputCity">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="mb-3 row">
+                        {{-- <label for="example-text-input" class="col-md-2 col-form-label">Domain Members</label> --}}
+                        <div class="col-md-6">
+                            <div id="fields">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="mb-3 row">
+                        <label for="example-text-input" class="col-md-10 col-form-label"></label>
+                        <div class="col-md-2">
+
+                            <button type="button" class="btn btn-primary waves-effect waves-light">Save</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            @include('partials.script')
+        </div>
+    </div>
+    @include('partials.script')
 </body>
 <script>
     $(document).ready(function() {
