@@ -9,7 +9,7 @@ class StatusController extends Controller
 {
     public function index()
     {
-        $statuses = DB::select('SELECT * FROM status');
+        $statuses = DB::select('SELECT s.*,IFNULL(c.name,"System") as company FROM `status` s left join company c on s.company_id = c.id;');
         return response()->json($statuses);
     }
 

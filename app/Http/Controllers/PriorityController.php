@@ -8,7 +8,7 @@ class PriorityController extends Controller
 {
     public function index()
     {
-        $priorities = DB::select('SELECT * FROM priority');
+        $priorities = DB::select('SELECT s.*,IFNULL(c.name,"System") as company FROM `priority` s left join company c on s.company_id = c.id;');
         return response()->json($priorities);
     }
 
