@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\BuGroupController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -53,3 +54,10 @@ Route::get('impacts/{id}', [ImpactController::class, 'show']);
 Route::get('impacts/company/{id}', [ImpactController::class, 'companywise']);
 Route::put('impacts/{id}', [ImpactController::class, 'update']);
 Route::delete('impacts/{id}', [ImpactController::class, 'destroy']);
+
+Route::get('bu_groups', [BuGroupController::class, 'index']);
+Route::post('bu_groups', [BuGroupController::class, 'store']);
+Route::get('bu_groups/{id}', [BuGroupController::class, 'show']);
+Route::get('bu_groups/company/{id}', [BuGroupController::class, 'companywise']);
+Route::put('bu_groups/{id}', [BuGroupController::class, 'update']);
+Route::delete('bu_groups/{id}', [BuGroupController::class, 'destroy']);

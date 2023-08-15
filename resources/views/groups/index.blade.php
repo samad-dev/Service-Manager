@@ -65,10 +65,13 @@
                                     <table id="myTable">
                                         <thead>
                                             <tr>
+                                                
+                                                <th>S.No</th>
                                                 <th>Company</th>
                                                 <th>Title</th>
                                                 <th>Business Unit</th>
-                                                <th>Action</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
                                             </tr>
                                         </thead>
                                         <tbody>
