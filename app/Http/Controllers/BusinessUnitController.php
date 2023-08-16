@@ -9,7 +9,7 @@ class BusinessUnitController extends Controller
 {
     public function index()
     {
-        $businessUnits = DB::select('SELECT * FROM business_units');
+        $businessUnits = DB::select('SELECT s.*,IFNULL(c.name,"System") as company FROM `business_units` s left join company c on s.company_id = c.id;');
         return response()->json($businessUnits);
     }
 

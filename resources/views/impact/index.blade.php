@@ -19,7 +19,7 @@
 </head>
 
 
-<body>
+<body data-layout-mode="bordered" data-topbar="dark" data-sidebar="dark">
 
     <!-- <body data-layout="horizontal"> -->
 
@@ -63,10 +63,9 @@
                                     <table id="myTable">
                                         <thead>
                                             <tr>
+                                                <th>S.No</th>
                                                 <th>Company</th>
                                                 <th>Title</th>
-
-
                                                 <th>Edit</th>
                                                 <th>Delete</th>
                                             </tr>
@@ -149,6 +148,7 @@
 <script>
     var table;
     $(document).ready(function() {
+        
         table = $('#myTable').DataTable({
             dom: 'Bfrtip',
             buttons: [
@@ -186,6 +186,7 @@
             table.clear().draw();
             $.each(response, function(index, data) {
                 table.row.add([
+                    index+1,
                     data.company,
                     data.title,
                     '<button type="button"id="edit" name="edit"  onclick="editData(' +

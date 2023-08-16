@@ -21,7 +21,7 @@
 </head>
 
 
-<body>
+<body data-layout-mode="bordered" data-topbar="dark" data-sidebar="dark">
 
     <!-- <body data-layout="horizontal"> -->
 
