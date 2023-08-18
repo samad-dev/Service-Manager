@@ -65,7 +65,7 @@
                                     <table id="myTable">
                                         <thead>
                                             <tr>
-                                                
+
                                                 <th>S.No</th>
                                                 <th>Company</th>
                                                 <th>Title</th>
@@ -106,12 +106,14 @@
     <!-- JAVASCRIPT -->
 
 
-    <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
+    <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="labelc" aria-hidden="true"
         data-bs-scroll="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel">Create Group</h5>
+                    <h5 class="modal-title" id="labelc">Create</h5>
+                    <h5>Group</h5>
+                    {{-- <h5 class="modal-title" id="myModalLabel">Create Group</h5> --}}
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -121,7 +123,7 @@
                                 <label for="example-text-input" class="col-md-2 col-form-label">Title</label>
                                 <div class="col-md-10">
                                     <input class="form-control" type="text" placeholder="Enter Group Title"
-                                        id="example-text-input">
+                                        id="title">
                                 </div>
                             </div>
                         </div>
@@ -131,8 +133,8 @@
                                 <label for="example-text-input" class="col-md-2 col-form-label">Business Unit</label>
                                 <div class="col-md-10">
 
-                                    <select class="form-control" data-trigger name="choices-single-default"
-                                        id="choices-single-default" placeholder="Select Business Unit">
+                                    <select class="form-control" name="choices-single-default" id="bu_s"
+                                        placeholder="Select Business Unit">
 
                                     </select>
 
@@ -144,13 +146,12 @@
                                 <label for="example-text-input" class="col-md-2 col-form-label">Group Members</label>
                                 <div class="col-md-10">
 
-                                    <select class="form-control" data-trigger name="choices-multiple-default"
-                                        id="choices-multiple-default" placeholder="This is a placeholder" multiple>
-                                        <option value="Choice 1" selected>Choice 1</option>
-                                        <option value="Choice 2">Choice 2</option>
-                                        <option value="Choice 3">Choice 3</option>
-                                        <option value="Choice 4" disabled>Choice 4</option>
+                                    <select class="form-control" name="members" id="members"
+                                        placeholder="Select Members in Group" multiple>
+
                                     </select>
+                                    <input class="form-control" type="hidden" id="hidden" name="hidden"
+                                        value="0">
 
                                 </div>
                             </div>
@@ -161,7 +162,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                    <button type="button" onclick="submit()" class="btn btn-primary waves-effect waves-light">Save
+                        changes</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -169,8 +171,41 @@
     @include('partials.script')
 </body>
 <script>
+    var table;
+    var members;
+    var bu_s;
     $(document).ready(function() {
-        $('#myTable').DataTable({
+        $.ajax({
+            url: "http://localhost:8000/api/business_units",
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                bu_s = new Choices("#bu_s", {
+                    removeItemButton: !0,
+                })
+                console.log(response);
+                bu_s.setChoices(response,
+                    'id',
+                    'name',
+                    false, );
+            }
+        });
+        $.ajax({
+            url: "http://localhost:8000/api/users",
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                members = new Choices("#members", {
+                    removeItemButton: !0,
+                })
+                console.log(response);
+                members.setChoices(response,
+                    'id',
+                    'name',
+                    false, );
+            }
+        });
+        table = $('#myTable').DataTable({
             dom: 'Bfrtip',
             buttons: [
                 'colvis',
@@ -190,7 +225,412 @@
                 // Add more buttons and classes as needed
             ]
         });
+        fetchtable();
+
     });
+
+    function fetchtable() {
+        var settings = {
+            "url": "http://localhost:8000/api/bu_groups",
+            "method": "GET",
+            "timeout": 0,
+        };
+
+        $.ajax(settings).done(function(response) {
+            console.log(response);
+            table.clear().draw();
+            $.each(response, function(index, data) {
+                table.row.add([
+                    index + 1,
+                    data.company,
+                    data.title,
+                    data.name,
+                    '<button type="button"id="edit" name="edit"  onclick="editData(' +
+                    data.id +
+                    ')"  class="btn btn-soft-warning waves-effect waves-light"><i class="bx bx-edit-alt font-size-16 align-middle"></i></button>',
+                    '<button type="button" id="delete" name="delete" onclick="deleteData(' +
+                    data.id +
+                    ')" class="btn btn-soft-danger waves-effect waves-light"><i class="bx bx-trash-alt font-size-16 align-middle"></i></button>'
+                ]).draw(false);
+            });
+        });
+    }
+
+
+    function submit() {
+        var update_id = document.getElementById("hidden").value;
+        console.log(update_id);
+        if (update_id == 0) {
+            var bu_id = $('#bu_s').find(":selected").val();
+
+            var form = new FormData();
+            form.append("company_id", "0");
+            form.append("title", document.getElementById("title").value);
+            form.append("bu_id", bu_id);
+            form.append("created_by", "1");
+
+            var settings = {
+                "url": "http://localhost:8000/api/bu_groups",
+                "method": "POST",
+                "timeout": 0,
+                "processData": false,
+                "mimeType": "multipart/form-data",
+                "contentType": false,
+                "data": form
+            };
+
+
+            $.ajax({
+                ...settings,
+                statusCode: {
+                    200: function(response) {
+                        console.log(response);
+                        response = JSON.parse(response);
+                        $('#myModal').modal('hide');
+                        console.log("Request was successful");
+                        document.getElementById('title').value = "";
+                        // bu_s.setChoiceByValue("");
+                        // members.setChoiceByValue("");
+                        document.getElementById('hidden').value = "";
+                        fetchtable();
+                        var values = $('#members').val();
+                        // console.log(values);
+                        var inserted_id = response['inserted_id'];
+                        // alert(inserted_id);
+                        for (var i = 0; i < values.length; i++) {
+                            opt = values[i];
+                            console.log(opt)
+                            var form = new FormData();
+                            form.append("group_id", inserted_id);
+                            form.append("member_id", opt);
+
+                            var settings = {
+                                "url": "http://localhost:8000/api/group-members",
+                                "method": "POST",
+                                "timeout": 0,
+                                "processData": false,
+                                "mimeType": "multipart/form-data",
+                                "contentType": false,
+                                "data": form
+                            };
+                            $.ajax({
+                                ...settings,
+                                statusCode: {
+                                    200: function(response) {
+                                        console.log(response);
+                                        $('#myModal').modal('hide');
+                                        document.getElementById('title')
+                                            .value = "";
+                                        document.getElementById('hidden').value = "";
+                                        // console.log("Request was successful");
+                                        // fetchtable();
+
+                                        Swal.fire(
+                                            'Success!',
+                                            'Group Created Successfully',
+                                            'success'
+                                        )
+
+                                    },
+                                    // Add more status code handlers as needed
+                                },
+                                success: function(data) {
+                                    // Additional success handling if needed
+                                },
+                                error: function(xhr, textStatus, errorThrown) {
+                                    Swal.fire(
+                                        'Server Error!',
+                                        'Group Members Not Assigned',
+                                        'error'
+                                    )
+
+                                    // console.log("Request failed with status code: " + xhr.status);
+                                }
+                            });
+
+                        }
+
+
+                        // Swal.fire(
+                        //     'Success!',
+                        //     'Type Created Successfully',
+                        //     'success'
+                        // )
+                    },
+                    // Add more status code handlers as needed
+                },
+                success: function(data) {
+                    // $('#myModal').reset();
+                    // Additional success handling if needed
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    Swal.fire(
+                        'Server Error!',
+                        'Type Not Created',
+                        'error'
+                    )
+
+                    // console.log("Request failed with status code: " + xhr.status);
+                }
+            });
+
+        } else {
+            var bu_id = $('#bu_s').find(":selected").val();
+            var settings = {
+                "url": "http://localhost:8000/api/bu_groups/" + update_id + "",
+                "method": "PUT",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "data": JSON.stringify({
+                    "company_id": 0,
+                    "title": document.getElementById("title").value,
+                    "bu_id": bu_id,
+                    "created_by": 3
+                }),
+            };
+
+
+            $.ajax({
+                ...settings,
+                statusCode: {
+                    200: function(response) {
+                        console.log(response);
+                        $('#myModal').modal('hide');
+                        document.getElementById('title').value = "";
+                        // document.getElementById('hidden').value = "";
+                        // console.log("Request was successful");
+                        var settings = {
+                            "url": "http://localhost:8000/api/group-members/group/" + update_id + "",
+                            "method": "DELETE",
+                            "timeout": 0,
+                        };
+
+                        $.ajax({
+                            ...settings,
+                            statusCode: {
+                                200: function(response) {
+                                    console.log(response);
+                                    var values = $('#members').val();
+                                    for (var i = 0; i < values.length; i++) {
+                                        opt = values[i];
+                                        console.log(opt)
+                                        var form = new FormData();
+                                        form.append("group_id", update_id);
+                                        form.append("member_id", opt);
+
+                                        var settings = {
+                                            "url": "http://localhost:8000/api/group-members",
+                                            "method": "POST",
+                                            "timeout": 0,
+                                            "processData": false,
+                                            "mimeType": "multipart/form-data",
+                                            "contentType": false,
+                                            "data": form
+                                        };
+                                        $.ajax({
+                                            ...settings,
+                                            statusCode: {
+                                                200: function(response) {
+                                                    console.log(response);
+                                                    $('#myModal').modal('hide');
+                                                    document.getElementById('title')
+                                                        .value = "";
+                                                    document.getElementById(
+                                                        'hidden').value = "";
+                                                    // console.log("Request was successful");
+                                                    // fetchtable();
+
+                                                    Swal.fire(
+                                                        'Success!',
+                                                        'Group Updated Successfully',
+                                                        'success'
+                                                    )
+
+                                                },
+                                                // Add more status code handlers as needed
+                                            },
+                                            success: function(data) {
+                                                // Additional success handling if needed
+                                            },
+                                            error: function(xhr, textStatus,
+                                                errorThrown) {
+                                                Swal.fire(
+                                                    'Server Error!',
+                                                    'Group Members Not Assigned',
+                                                    'error'
+                                                )
+
+                                                // console.log("Request failed with status code: " + xhr.status);
+                                            }
+                                        });
+
+                                    }
+
+
+
+                                },
+                                // Add more status code handlers as needed
+                            },
+                            success: function(data) {
+                                // Additional success handling if needed
+                            },
+                            error: function(xhr, textStatus, errorThrown) {
+                                Swal.fire(
+                                    'Server Error!',
+                                    'Members Not Updated',
+                                    'error'
+                                )
+
+                                // console.log("Request failed with status code: " + xhr.status);
+                            }
+                        });
+                        fetchtable();
+
+                    },
+                    // Add more status code handlers as needed
+                },
+                success: function(data) {
+                    // Additional success handling if needed
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    Swal.fire(
+                        'Server Error!',
+                        'Type Not updated',
+                        'error'
+                    )
+
+                    // console.log("Request failed with status code: " + xhr.status);
+                }
+            });
+
+
+
+            // alert("Update Records Here");
+
+        }
+
+    }
+
+
+    function editData(id) {
+        // alert(id);
+        var settings = {
+            "url": "http://localhost:8000/api/bu_groups/" + id + "",
+            "method": "GET",
+            "timeout": 0,
+        };
+
+        $.ajax({
+            ...settings,
+            statusCode: {
+                200: function(response) {
+                    console.log(response[0]['title']);
+                    document.getElementById('title').value = response[0]['title'];
+                    document.getElementById('hidden').value = response[0]['id'];
+                    $("#parent").val(response[0]['parent']);
+                    bu_s.setChoiceByValue(response[0]['bu_id']);
+                    // $('#myModal').modal('show');
+                    document.getElementById("labelc").innerHTML = 'Update'
+
+
+                },
+                // Add more status code handlers as needed
+            },
+            success: function(data) {
+                // Additional success handling if needed
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                Swal.fire(
+                    'Server Error!',
+                    '',
+                    'error'
+                )
+
+                // console.log("Request failed with status code: " + xhr.status);
+            }
+        });
+        var settings2 = {
+            "url": "http://localhost:8000/api/group-members/group/" + id + "",
+            "method": "GET",
+            "timeout": 0,
+        };
+
+        $.ajax({
+            ...settings2,
+            statusCode: {
+                200: function(response) {
+                    // console.log(response[0]['title']);
+                    var val = [];
+                    for (a = 0; a < response.length; a++) {
+                        console.log(response[a]['member_id'])
+                        val.push(response[a]['member_id']);
+
+                    }
+                    console.log(val);
+                    members.setChoiceByValue(val);
+                    $('#myModal').modal('show');
+                    document.getElementById("labelc").innerHTML = 'Update'
+
+
+                },
+                // Add more status code handlers as needed
+            },
+            success: function(data) {
+                // Additional success handling if needed
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                Swal.fire(
+                    'Server Error!',
+                    '',
+                    'error'
+                )
+
+                // console.log("Request failed with status code: " + xhr.status);
+            }
+        });
+
+    }
+
+    function deleteData(id) {
+
+        var settings = {
+            "url": "http://localhost:8000/api/bu_groups/" + id + "",
+            "method": "DELETE",
+            "timeout": 0,
+        };
+
+        $.ajax({
+            ...settings,
+            statusCode: {
+                200: function(response) {
+                    console.log(response);
+                    // $('#myModal').modal('hide');
+                    // console.log("Request was successful");
+                    fetchtable();
+                    Swal.fire(
+                        'Success!',
+                        'Business Unit Deleted Successfully',
+                        'success'
+                    )
+                },
+                // Add more status code handlers as needed
+            },
+            success: function(data) {
+                // Additional success handling if needed
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                Swal.fire(
+                    'Server Error!',
+                    'Business Unit Not Deleted',
+                    'error'
+                )
+
+                // console.log("Request failed with status code: " + xhr.status);
+            }
+        });
+    };
 </script>
 
 </html>

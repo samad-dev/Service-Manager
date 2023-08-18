@@ -44,5 +44,10 @@ class GroupMemberController extends Controller
         DB::delete('DELETE FROM bu_group_members WHERE id = ?', [$id]);
         return response()->json(['message' => 'Group member deleted successfully']);
     }
+    public function destroygroup($id)
+    {
+        DB::delete('DELETE FROM bu_group_members WHERE group_id = ?', [$id]);
+        return response()->json(['message' => 'Group members deleted successfully']);
+    }
 }
 

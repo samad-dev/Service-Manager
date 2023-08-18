@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = DB::select('SELECT id as value,name as label FROM users');
+        $users = DB::select('SELECT * FROM users');
         return response()->json($users);
     }
 

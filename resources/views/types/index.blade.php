@@ -279,7 +279,7 @@
             var parent_id = $('#parent').find(":selected").val();
 
             var form = new FormData();
-            form.append("company_id", "1");
+            form.append("company_id", "0");
             form.append("title", document.getElementById('example-text-input-title').value);
             form.append("parent_id", parent_id);
             form.append("active", "1");
@@ -429,7 +429,7 @@
 
     function deleteData(id) {
 
-        alert(id);
+        // alert(id);
         var settings = {
             "url": "http://localhost:8000/api/types/" + id + "",
             "method": "DELETE",

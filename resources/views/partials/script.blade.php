@@ -45,6 +45,7 @@
 
  <!-- Sweet alert init js-->
  <script src="assets/js/pages/sweet-alerts.init.js"></script>
+ <script src="assets/js/pages/form-validation.init.js"></script>
 
           
 {{-- <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.js"></script> --}}

@@ -221,8 +221,19 @@
                 </div>
                 <div class="col-12">
                     <div class="mb-3 row">
+                        <label for="example-text-input" class="col-md-6 col-form-label">Additional
+                            Fields</label>
+                        <div class="col-md-6 p-1">
+
+                            <button type="button" id="addfield"
+                                class="btn btn-outline-warning waves-effect waves-light"><i
+                                    class="fas fa-plus-square"></i> Add More</button>
+
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
                         {{-- <label for="example-text-input" class="col-md-2 col-form-label">Domain Members</label> --}}
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div id="fields">
                                 <input class="form-control" type="hidden" id="hidden" name="hidden"
                                     value="0">
@@ -277,19 +288,19 @@
                 })
                 console.log(response);
                 store.setChoices(response,
-                    'value',
-                    'label',
+                    'id',
+                    'name',
                     false, );
             }
         });
         $("#addfield").click(function() {
             var newRowAdd =
                 '<div id="row" class="row"><div class="input-group m-3">' +
-                '<div class="col-3"><div class="input-group-prepend">' +
+                '<div class="col-6"><div class="input-group-prepend m-1"><input class="form-control" type="text" placeholder="Additional Field"></div> </div>' +
+                '<div class="col-4 mt-1"><select class="form-control " data-trigger name="choices-single-default" id="choices-single-default" placeholder=""><option>String</option><option>Number</option><option>Text</option></select> </div>' +
+                '<div class="col-2"><div class="input-group-prepend">' +
                 '<button type="button" id="DeleteRow" class="btn btn-outline-danger waves-effect waves-light m-1">Delete</button>' +
-                '<i class="bi bi-trash"></i></button></div> </div>' +
-                '<div class="col-4"><div class="input-group-prepend m-1"><input class="form-control" type="text" placeholder="Additional Field"></div> </div><div class="col-1"></div>' +
-                '<div class="col-4"><select class="form-control " data-trigger name="choices-single-default" id="choices-single-default" placeholder=""><option>String</option><option>Number</option><option>Text</option></select> </div> </div>' +
+                '<i class="bi bi-trash"></i></button></div> </div></div>' +
                 '';
 
             $('#fields').append(newRowAdd);
@@ -410,7 +421,7 @@
             var market = $('#parent').find(":selected").val();
             var store = $('#store').find(":selected").val();
             var settings = {
-                "url": "http://localhost:8000/api/business_units/"+update_id+"",
+                "url": "http://localhost:8000/api/business_units/" + update_id + "",
                 "method": "PUT",
                 "timeout": 0,
                 "headers": {
@@ -541,43 +552,42 @@
 
     function deleteData(id) {
 
-alert(id);
-var settings = {
-    "url": "http://localhost:8000/api/business_units/" + id + "",
-    "method": "DELETE",
-    "timeout": 0,
-};
+        var settings = {
+            "url": "http://localhost:8000/api/business_units/" + id + "",
+            "method": "DELETE",
+            "timeout": 0,
+        };
 
-$.ajax({
-    ...settings,
-    statusCode: {
-        200: function(response) {
-            console.log(response);
-            // $('#myModal').modal('hide');
-            // console.log("Request was successful");
-            fetchtable();
-            Swal.fire(
-                'Success!',
-                'Business Unit Deleted Successfully',
-                'success'
-            )
-        },
-        // Add more status code handlers as needed
-    },
-    success: function(data) {
-        // Additional success handling if needed
-    },
-    error: function(xhr, textStatus, errorThrown) {
-        Swal.fire(
-            'Server Error!',
-            'Business Unit Not Deleted',
-            'error'
-        )
+        $.ajax({
+            ...settings,
+            statusCode: {
+                200: function(response) {
+                    console.log(response);
+                    // $('#myModal').modal('hide');
+                    // console.log("Request was successful");
+                    fetchtable();
+                    Swal.fire(
+                        'Success!',
+                        'Business Unit Deleted Successfully',
+                        'success'
+                    )
+                },
+                // Add more status code handlers as needed
+            },
+            success: function(data) {
+                // Additional success handling if needed
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                Swal.fire(
+                    'Server Error!',
+                    'Business Unit Not Deleted',
+                    'error'
+                )
 
-        // console.log("Request failed with status code: " + xhr.status);
-    }
-});
-};
+                // console.log("Request failed with status code: " + xhr.status);
+            }
+        });
+    };
 </script>
 
 </html>

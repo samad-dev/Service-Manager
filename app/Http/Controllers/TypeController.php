@@ -38,6 +38,12 @@ class TypeController extends Controller
         return response()->json($type);
     }
 
+    public function parent($id)
+    {
+        $type = DB::select('SELECT * FROM types WHERE parent_id = ?', [$id]);
+        return response()->json($type);
+    }
+
     public function update(Request $request, $id)
     {
         $data = $request->all();
