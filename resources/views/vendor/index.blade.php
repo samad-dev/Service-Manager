@@ -516,7 +516,7 @@
                     fetchtable();
                     Swal.fire(
                         'Success!',
-                        'Business Unit Deleted Successfully',
+                        'Vendor Deleted Successfully',
                         'success'
                     )
                 },
@@ -528,7 +528,7 @@
             error: function(xhr, textStatus, errorThrown) {
                 Swal.fire(
                     'Server Error!',
-                    'Business Unit Not Deleted',
+                    'Vendor Unit Not Deleted',
                     'error'
                 )
 
@@ -536,6 +536,7 @@
             }
         });
     }
+    
 </script>
 
 </html>

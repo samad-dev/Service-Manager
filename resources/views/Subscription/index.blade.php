@@ -50,8 +50,7 @@
                                             <h4 class="card-title mb-0 pt-3">Subscription</h4>
                                         </div>
                                         <div class="col-md-6">
-                                            <button type="button" class="btn btn-soft-primary waves-effect waves-light"
-                                                data-bs-toggle="modal" data-bs-target="#myModal">
+                                            <button type="button" class="btn btn-soft-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#myModal">
                                                 <i class="bx bxs-add-to-queue font-size-16 align-middle me-2"></i> Add
                                                 New
                                             </button>
@@ -65,7 +64,7 @@
                                     <table id="myTable">
                                         <thead>
                                             <tr>
-                                                
+
                                                 <th>Title</th>
                                                 <th>Price</th>
                                                 <th>No of Licence</th>
@@ -114,8 +113,7 @@
                     <div class="mb-3 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">Title</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="text" placeholder="Enter Title"
-                                id="example-text-input">
+                            <input class="form-control" type="text" placeholder="Enter Title" id="example-text-input">
                         </div>
                     </div>
                 </div>
@@ -124,8 +122,7 @@
                         <label for="example-text-input" class="col-md-2 col-form-label">No of Licence</label>
                         <div class="col-md-10">
 
-                            <select class="form-control" data-trigger name="choices-single-default"
-                                id="choices-single-default" placeholder="This is a search placeholder">
+                            <select class="form-control" data-trigger name="choices-single-default" id="choices-single-default" placeholder="This is a search placeholder">
 
                             </select>
 
@@ -137,8 +134,7 @@
                         <label for="example-text-input" class="col-md-2 col-form-label">No of Licence</label>
                         <div class="col-md-10">
 
-                            <select class="form-control" data-trigger name="choices-single-default"
-                                id="choices-single-default" placeholder="This is a search placeholder">
+                            <select class="form-control" data-trigger name="choices-single-default" id="choices-single-default" placeholder="This is a search placeholder">
 
                             </select>
 
@@ -150,8 +146,7 @@
         </div>
     </div>
 
-    <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
-        data-bs-scroll="true">
+    <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" data-bs-scroll="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -164,8 +159,7 @@
                             <div class="mb-3 row">
                                 <label for="example-text-input" class="col-md-2 col-form-label">Title</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="text" placeholder="Enter Title"
-                                        id="example-text-input">
+                                    <input class="form-control" type="text" placeholder="Enter Title" id="example-text-input">
                                 </div>
                             </div>
                         </div>
@@ -173,8 +167,7 @@
                             <div class="mb-3 row">
                                 <label for="example-text-input" class="col-md-2 col-form-label">No of Licence</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="text" placeholder="Enter Title"
-                                        id="example-text-input">
+                                    <input class="form-control" type="text" placeholder="Enter Title" id="example-text-input">
                                 </div>
                             </div>
                         </div>
@@ -182,8 +175,7 @@
                             <div class="mb-3 row">
                                 <label for="example-text-input" class="col-md-2 col-form-label">Price</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="text" placeholder="Enter Title"
-                                        id="example-text-input">
+                                    <input class="form-control" type="text" placeholder="Enter Title" id="example-text-input">
                                 </div>
                             </div>
                         </div>
@@ -191,7 +183,7 @@
                             <div class="mb-3 row">
                                 <label for="example-text-input" class="col-md-2 col-form-label">Description</label>
                                 <div class="col-md-10">
-                                    <textarea class="form-control" name="description" spellcheck="false">                    
+                                    <textarea class="form-control" name="description" spellcheck="false">
                                     </textarea>
                                 </div>
                             </div>
@@ -200,8 +192,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary waves-effect"
-                        data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
                 </div>
             </div><!-- /.modal-content -->
@@ -231,7 +222,35 @@
                 // Add more buttons and classes as needed
             ]
         });
+        fetchtable();
     });
+
+    function fetchtable() {
+        var settings = {
+            "url": "http://localhost:8000/api/subscription-packages",
+            "method": "GET",
+            "timeout": 0,
+        };
+
+        $.ajax(settings).done(function(response) {
+            console.log(response);
+            table.clear().draw();
+            $.each(response, function(index, data) {
+                table.row.add([
+                    index + 1,
+                    data.company,
+                    data.title,
+                    data.name,
+                    '<button type="button"id="edit" name="edit"  onclick="editData(' +
+                    data.id +
+                    ')"  class="btn btn-soft-warning waves-effect waves-light"><i class="bx bx-edit-alt font-size-16 align-middle"></i></button>',
+                    '<button type="button" id="delete" name="delete" onclick="deleteData(' +
+                    data.id +
+                    ')" class="btn btn-soft-danger waves-effect waves-light"><i class="bx bx-trash-alt font-size-16 align-middle"></i></button>'
+                ]).draw(false);
+            });
+        });
+    }
 </script>
 
 </html>
