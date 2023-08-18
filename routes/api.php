@@ -11,6 +11,7 @@ use App\Http\Controllers\GroupMemberController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BusinessUnitController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\SubscriptionPackageController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -99,3 +100,9 @@ Route::get('vendors/{id}', [VendorController::class, 'show']);
 Route::get('vendors/company/{id}', [VendorController::class, 'companywise']);
 Route::put('vendors/{id}', [VendorController::class, 'update']);
 Route::delete('vendors/{id}', [VendorController::class, 'destroy']);
+
+Route::get('subscription-packages', [SubscriptionPackageController::class, 'index']);
+Route::post('subscription-packages', [SubscriptionPackageController::class, 'store']);
+Route::get('subscription-packages/{id}', [SubscriptionPackageController::class, 'show']);
+Route::put('subscription-packages/{id}', [SubscriptionPackageController::class, 'update']);
+Route::delete('subscription-packages/{id}', [SubscriptionPackageController::class, 'destroy']);
