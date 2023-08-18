@@ -53,10 +53,7 @@
                                             {{-- <button type="button" class="btn btn-soft-primary waves-effect waves-light"  data-bs-toggle="modal" data-bs-target="#myModal">
                                                      Add New
                                                 </button> --}}
-                                            <button class="btn btn-soft-primary waves-effect waves-light" type="button"
-                                                data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                                                aria-controls="offcanvasRight"><i
-                                                    class="bx bxs-add-to-queue font-size-16 align-middle me-2"></i>Add
+                                            <button class="btn btn-soft-primary waves-effect waves-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bx bxs-add-to-queue font-size-16 align-middle me-2"></i>Add
                                                 New</button>
                                             {{-- <button type="button" class="btn btn-primary waves-effect waves-light">Add New</button> --}}
                                         </div>
@@ -118,8 +115,7 @@
                     <div class="mb-3 row">
                         <label for="formrow-inputState" class="form-label">Type</label>
                         <div class="col-md-12">
-                            <select class="form-control" name="choices-single-default" id="type"
-                                placeholder="This is a search placeholder">
+                            <select class="form-control" name="choices-single-default" id="type" placeholder="This is a search placeholder">
 
                             </select>
                         </div>
@@ -129,8 +125,7 @@
                     <div class="mb-3 row">
                         <label for="formrow-inputState" class="form-label">Sub Type</label>
                         <div class="col-md-12">
-                            <select class="form-control" name="choices-single-default" id="subtype"
-                                placeholder="This is a search placeholder">
+                            <select class="form-control" name="choices-single-default" id="subtype" placeholder="This is a search placeholder">
 
                             </select>
                         </div>
@@ -161,8 +156,7 @@
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-inputCity" class="form-label">Alternate Phone</label>
-                            <input type="text" class="form-control" placeholder="Enter Alternate Phone"
-                                id="aphone">
+                            <input type="text" class="form-control" placeholder="Enter Alternate Phone" id="aphone">
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -210,8 +204,7 @@
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-Country" class="form-label required">Country</label>
-                            <input type="text" class="form-control" required placeholder="Enter Country"
-                                id="country">
+                            <input type="text" class="form-control" required placeholder="Enter Country" id="country">
                         </div>
                     </div>
 
@@ -227,8 +220,7 @@
                         {{-- <label for="example-text-input" class="col-md-2 col-form-label">Domain Members</label> --}}
                         <div class="col-md-6">
                             <div id="fields">
-                                <input class="form-control" type="hidden" id="hidden" name="hidden"
-                                    value="0">
+                                <input class="form-control" type="hidden" id="hidden" name="hidden" value="0">
                             </div>
                         </div>
                     </div>
@@ -238,8 +230,7 @@
                         <label for="example-text-input" class="col-md-10 col-form-label"></label>
                         <div class="col-md-2">
 
-                            <button type="button" onclick="submit()"
-                                class="btn btn-primary waves-effect waves-light">Save</button>
+                            <button type="button" onclick="submit()" class="btn btn-primary waves-effect waves-light">Save</button>
                         </div>
                     </div>
                 </div>
@@ -396,7 +387,7 @@
         } else {
             var subid = $('#subtype').find(":selected").val();
             var settings = {
-                "url": "http://localhost:8000/api/vendors/"+update_id+"",
+                "url": "http://localhost:8000/api/vendors/" + update_id + "",
                 "method": "PUT",
                 "timeout": 0,
                 "headers": {
@@ -429,7 +420,7 @@
                         $('#myModal').modal('hide');
                         $('#fetchres').find('input:text').val('');
                         document.getElementById('hidden').value = "0";
-                        
+
 
                         fetchtable();
                         Swal.fire(
@@ -459,6 +450,7 @@
 
 
     }
+
     function editData(id) {
         // alert(id);
         var settings = {
@@ -474,18 +466,18 @@
                     console.log(response[0]['name']);
                     document.getElementById('hidden').value = response[0]['id'];
                     document.getElementById("name").value = response[0]["name"];
-                        document.getElementById("email").value = response[0]["email"];
-                        document.getElementById("phone").value = response[0]["phone"];
-                        document.getElementById("aphone").value = response[0]["alternate_phone"];
-                        document.getElementById("address_1").value = response[0]["address_1"];
-                        document.getElementById("address_2").value = response[0]["address_2"];
-                        document.getElementById("latitude").value = response[0]["latitude"];
-                        document.getElementById("longitude").value = response[0]["longitude"];
-                        document.getElementById("city").value = response[0]["city"];
-                        document.getElementById("state").value = response[0]["state"];
-                        document.getElementById("country").value = response[0]["country"];
-                        document.getElementById("zipcode").value = response[0]["zipcode"];
-                   
+                    document.getElementById("email").value = response[0]["email"];
+                    document.getElementById("phone").value = response[0]["phone"];
+                    document.getElementById("aphone").value = response[0]["alternate_phone"];
+                    document.getElementById("address_1").value = response[0]["address_1"];
+                    document.getElementById("address_2").value = response[0]["address_2"];
+                    document.getElementById("latitude").value = response[0]["latitude"];
+                    document.getElementById("longitude").value = response[0]["longitude"];
+                    document.getElementById("city").value = response[0]["city"];
+                    document.getElementById("state").value = response[0]["state"];
+                    document.getElementById("country").value = response[0]["country"];
+                    document.getElementById("zipcode").value = response[0]["zipcode"];
+
                     // document.getElementById("labelc").innerHTML = 'Update'
 
 
@@ -506,6 +498,43 @@
             }
         });
 
+    }
+
+    function deleteData(id) {
+        var settings = {
+            "url": "http://localhost:8000/api/vendors/" + id + "",
+            "method": "DELETE",
+            "timeout": 0,
+        };
+        $.ajax({
+            ...settings,
+            statusCode: {
+                200: function(response) {
+                    console.log(response);
+                    // $('#myModal').modal('hide');
+                    // console.log("Request was successful");
+                    fetchtable();
+                    Swal.fire(
+                        'Success!',
+                        'Business Unit Deleted Successfully',
+                        'success'
+                    )
+                },
+                // Add more status code handlers as needed
+            },
+            success: function(data) {
+                // Additional success handling if needed
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                Swal.fire(
+                    'Server Error!',
+                    'Business Unit Not Deleted',
+                    'error'
+                )
+
+                // console.log("Request failed with status code: " + xhr.status);
+            }
+        });
     }
 </script>
 
