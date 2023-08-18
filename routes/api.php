@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BusinessUnitController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\SubscriptionPackageController;
+use App\Http\Controllers\BuFieldController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -106,3 +107,10 @@ Route::post('subscription-packages', [SubscriptionPackageController::class, 'sto
 Route::get('subscription-packages/{id}', [SubscriptionPackageController::class, 'show']);
 Route::put('subscription-packages/{id}', [SubscriptionPackageController::class, 'update']);
 Route::delete('subscription-packages/{id}', [SubscriptionPackageController::class, 'destroy']);
+
+
+
+Route::get('bu_fields', [BuFieldController::class, 'index']);
+Route::post('bu_fields', [BuFieldController::class, 'store']);
+Route::get('bu_fields/{id}', [BuFieldController::class, 'show']);
+Route::delete('bu_fields/{id}', [BuFieldController::class, 'destroy']);

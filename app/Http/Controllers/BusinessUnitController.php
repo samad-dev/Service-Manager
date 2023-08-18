@@ -18,7 +18,13 @@ class BusinessUnitController extends Controller
         $data = $request->all();
         DB::insert('INSERT INTO business_units (company_id, marketing_manager, store_manager, bu_user, name, email, phone, alternate_phone, address_1, address_2, latitude, longitude, city, state, country, zipcode, status, properties) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
             [$data['company_id'], $data['marketing_manager'], $data['store_manager'], $data['bu_user'], $data['name'], $data['email'], $data['phone'], $data['alternate_phone'], $data['address_1'], $data['address_2'], $data['latitude'], $data['longitude'], $data['city'], $data['state'], $data['country'], $data['zipcode'], $data['status'], $data['properties']]);
-        return response()->json(['message' => 'Business unit created successfully']);
+        $insertedId = DB::getPdo()->lastInsertId();
+
+        if ($insertedId) {
+            return response()->json(['message' => 'Business unit created successfully', 'inserted_id' => $insertedId]);
+        } else {
+            return response()->json(['message' => 'Failed to create business unit'], 500);
+        }
     }
 
     public function show($id)

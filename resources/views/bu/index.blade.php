@@ -284,10 +284,11 @@
                     false, );
             }
         });
+        var k = "The respective values are :";
         $("#addfield").click(function() {
             var newRowAdd =
                 '<div id="row" class="row"><div class="input-group m-3">' +
-                '<div class="col-6"><div class="input-group-prepend m-1"><input id="array[]" class="form-control" type="text" placeholder="Additional Field"></div> </div>' +
+                '<div class="col-6"><div class="input-group-prepend m-1"><input name="name2[]" class="form-control" type="text" placeholder="Additional Field"></div> </div>' +
                 '<div class="col-4 mt-1"><select name="type[]" class="form-control " data-trigger name="choices-single-default" id="choices-single-default" placeholder=""><option>String</option><option>Number</option><option>Text</option></select> </div>' +
                 '<div class="col-2"><div class="input-group-prepend">' +
                 '<button type="button" id="DeleteRow" class="btn btn-outline-danger waves-effect waves-light m-1">Delete</button>' +
@@ -295,6 +296,7 @@
                 '';
 
             $('#fields').append(newRowAdd);
+
             // alert("The paragraph was clicked.");
         });
 
@@ -379,24 +381,74 @@
                 statusCode: {
                     200: function(response) {
                         console.log(response);
+                        response = JSON.parse(response);
                         $('#myModal').modal('hide');
                         console.log("Request was successful");
                         // document.getElementById('example-text-input-title').value = "";
                         $('#fetch_results').find('input:text').val('');
                         document.getElementById('hidden').value = "";
                         fetchtable();
+
+                        var k;
+                        // var name = document.getElementsByName('name2[]');
+                        // var type = document.getElementsByName('type[]');
+                        var inserted_id = response['inserted_id'];
+                        var input = document.getElementsByName('name2[]');
+                        var input2 = document.getElementsByName('type[]');
+
+                        for (var i = 0; i < input.length; i++) {
+                            var a = input[i];
+                            var b = input2[i];
+                            k = k + "array[" + i + "].value= " +
+                                a.value + "==" + b.value;
+                            console.log(k)
+                           
+                            
+                            var form = new FormData();
+                            form.append("name", a.value);
+                            form.append("type", b.value);
+                            form.append("bu_id", inserted_id);
+                            var setting2 = {
+                                "url": "http://localhost:8000/api/bu_fields",
+                                "method": "POST",
+                                "timeout": 0,
+                                "processData": false,
+                                "mimeType": "multipart/form-data",
+                                "contentType": false,
+                                "data": form
+                            };
+
+                            $.ajax({
+                                ...setting2,
+                                statusCode: {
+                                    200: function(response) {
+
+                                    },
+                                    // Add more status code handlers as needed
+                                },
+                                success: function(data) {
+                                    // $('#myModal').reset();
+                                    // Additional success handling if needed
+                                },
+                                error: function(xhr, textStatus, errorThrown) {
+                                    Swal.fire(
+                                        'Server Error!',
+                                        'Business Unit Not Created',
+                                        'error'
+                                    )
+
+                                    // console.log("Request failed with status code: " + xhr.status);
+                                }
+                            });
+                        }
+
+
+
                         Swal.fire(
                             'Success!',
                             'Business Unit Created Successfully',
                             'success'
                         )
-                        var input = document.getElementsByName('array[]');
-
-                        for (var i = 0; i < input.length; i++) {
-                            var a = input[i];
-                            k = k + "array[" + i + "].value= " +
-                                a.value + " ";
-                        }
 
                     },
                     // Add more status code handlers as needed
