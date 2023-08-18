@@ -65,10 +65,12 @@
                                         <thead>
                                             <tr>
 
+                                                <th>S.No</th>
                                                 <th>Title</th>
                                                 <th>Price</th>
                                                 <th>No of Licence</th>
-                                                <th>Description</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -101,50 +103,7 @@
 
     <!-- JAVASCRIPT -->
     <!-- right offcanvas -->
-    <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header">
-            <h5 id="offcanvasRightLabel">Create Subscription</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <hr>
-        <div class="offcanvas-body">
-            <div class="row">
-                <div class="col-12">
-                    <div class="mb-3 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">Title</label>
-                        <div class="col-md-10">
-                            <input class="form-control" type="text" placeholder="Enter Title" id="example-text-input">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="mb-3 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">No of Licence</label>
-                        <div class="col-md-10">
 
-                            <select class="form-control" data-trigger name="choices-single-default" id="choices-single-default" placeholder="This is a search placeholder">
-
-                            </select>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="mb-3 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">No of Licence</label>
-                        <div class="col-md-10">
-
-                            <select class="form-control" data-trigger name="choices-single-default" id="choices-single-default" placeholder="This is a search placeholder">
-
-                            </select>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
 
     <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" data-bs-scroll="true">
         <div class="modal-dialog">
@@ -159,7 +118,7 @@
                             <div class="mb-3 row">
                                 <label for="example-text-input" class="col-md-2 col-form-label">Title</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="text" placeholder="Enter Title" id="example-text-input">
+                                    <input class="form-control" type="text" placeholder="Enter Title" id="title">
                                 </div>
                             </div>
                         </div>
@@ -167,7 +126,7 @@
                             <div class="mb-3 row">
                                 <label for="example-text-input" class="col-md-2 col-form-label">No of Licence</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="text" placeholder="Enter Title" id="example-text-input">
+                                    <input class="form-control" type="text" placeholder="Enter Title" id="nolicence">
                                 </div>
                             </div>
                         </div>
@@ -175,7 +134,7 @@
                             <div class="mb-3 row">
                                 <label for="example-text-input" class="col-md-2 col-form-label">Price</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="text" placeholder="Enter Title" id="example-text-input">
+                                    <input class="form-control" type="text" placeholder="Enter Title" id="prices">
                                 </div>
                             </div>
                         </div>
@@ -183,9 +142,10 @@
                             <div class="mb-3 row">
                                 <label for="example-text-input" class="col-md-2 col-form-label">Description</label>
                                 <div class="col-md-10">
-                                    <textarea class="form-control" name="description" spellcheck="false">
+                                    <textarea class="form-control" name="description" spellcheck="false" id="discription">
                                     </textarea>
                                 </div>
+                                <input class="form-control" type="hidden" id="hidden" name="hidden" value="0">
                             </div>
                         </div>
 
@@ -193,7 +153,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                    <button type="button" onclick="submit()" class="btn btn-primary waves-effect waves-light">Save
+                        changes</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -201,8 +162,9 @@
     @include('partials.script')
 </body>
 <script>
+    var table;
     $(document).ready(function() {
-        $('#myTable').DataTable({
+        table = $('#myTable').DataTable({
             dom: 'Bfrtip',
             buttons: [
                 'colvis',
@@ -238,9 +200,9 @@
             $.each(response, function(index, data) {
                 table.row.add([
                     index + 1,
-                    data.company,
                     data.title,
-                    data.name,
+                    data.price,
+                    data.no_of_licence,
                     '<button type="button"id="edit" name="edit"  onclick="editData(' +
                     data.id +
                     ')"  class="btn btn-soft-warning waves-effect waves-light"><i class="bx bx-edit-alt font-size-16 align-middle"></i></button>',
@@ -250,6 +212,154 @@
                 ]).draw(false);
             });
         });
+    }
+
+    function submit() {
+        var update_id = document.getElementById("hidden").value;
+        console.log(update_id);
+        if (update_id == 0) {
+            var form = new FormData();
+            form.append("title", document.getElementById("title").value);
+            form.append("price", document.getElementById("prices").value);
+            form.append("no_of_licence", document.getElementById("nolicence").value);
+            form.append("description", document.getElementById("discription").value);
+
+            var settings = {
+                "url": "http://localhost:8000/api/subscription-packages",
+                "method": "POST",
+                "timeout": 0,
+                "processData": false,
+                "mimeType": "multipart/form-data",
+                "contentType": false,
+                "data": form
+            };
+            $.ajax({
+                ...settings,
+                statusCode: {
+                    200: function(response) {
+                        console.log(response);
+                        $('#myModal').modal('hide');
+                        document.getElementById('title')
+                            .value = "";
+                        document.getElementById('hidden').value = "";
+                        // console.log("Request was successful");
+                        fetchtable();
+
+                        Swal.fire(
+                            'Success!',
+                            'Group Created Successfully',
+                            'success'
+                        )
+
+                    },
+                    // Add more status code handlers as needed
+                },
+                success: function(data) {
+                    // Additional success handling if needed
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    Swal.fire(
+                        'Server Error!',
+                        'Group Members Not Assigned',
+                        'error'
+                    )
+
+                    // console.log("Request failed with status code: " + xhr.status);
+                }
+            });
+        } else {
+
+            var settings = {
+                "url": "http://localhost:8000/api/subscription-packages/"+update_id+"",
+                "method": "PUT",
+                "timeout": 0,
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "data": JSON.stringify({
+                    "title": document.getElementById("title").value,
+                    "price": document.getElementById("nolicence").value,
+                    "no_of_licence": document.getElementById("prices").value,
+                    "description": document.getElementById("discription").value,
+                }),
+            };
+
+
+            $.ajax({
+                ...settings,
+                statusCode: {
+                    200: function(response) {
+                        console.log(response);
+                        // $('#myModal').modal('hide');
+                        document.getElementById('title').value = "";
+                        document.getElementById('hidden').value = "";
+                        document.getElementById("nolicence").value = "";
+                        document.getElementById("prices").value = "";
+                        document.getElementById("discription").value = "";
+                        // console.log("Request was successful");
+                        fetchtable();
+                        Swal.fire(
+                            'Success!',
+                            'Package Updated Successfully',
+                            'success'
+                        )
+                    },
+                    // Add more status code handlers as needed
+                },
+                success: function(data) {
+                    // Additional success handling if needed
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    Swal.fire(
+                        'Server Error!',
+                        'Package Not updated',
+                        'error'
+                    )
+
+                    // console.log("Request failed with status code: " + xhr.status);
+                }
+            });
+        }
+
+    }
+
+    function editData(id) {
+        var settings = {
+            "url": "http://localhost:8000/api/subscription-packages/" + id + "",
+            "method": "GET",
+            "timeout": 0,
+        };
+        $.ajax({
+            ...settings,
+            statusCode: {
+                200: function(response) {
+                    console.log(response[0]['title']);
+                    document.getElementById('title').value = response[0]['title'];
+                    document.getElementById('nolicence').value = response[0]['no_of_licence'];
+                    document.getElementById('prices').value = response[0]['price'];
+                    document.getElementById('discription').value = response[0]['description'];
+                    document.getElementById('hidden').value = response[0]['id'];
+                    $('#myModal').modal('show');
+                    document.getElementById("labelc").innerHTML = 'Update'
+
+
+                },
+                // Add more status code handlers as needed
+            },
+            success: function(data) {
+                // Additional success handling if needed
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                Swal.fire(
+                    'Server Error!',
+                    '',
+                    'error'
+                )
+
+                // console.log("Request failed with status code: " + xhr.status);
+            }
+        });
+
     }
 </script>
 
