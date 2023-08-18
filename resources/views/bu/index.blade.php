@@ -53,10 +53,7 @@
                                             {{-- <button type="button" class="btn btn-soft-primary waves-effect waves-light"  data-bs-toggle="modal" data-bs-target="#myModal">
                                                      Add New
                                                 </button> --}}
-                                            <button class="btn btn-soft-primary waves-effect waves-light" type="button"
-                                                data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                                                aria-controls="offcanvasRight"><i
-                                                    class="bx bxs-add-to-queue font-size-16 align-middle me-2"></i>Add
+                                            <button class="btn btn-soft-primary waves-effect waves-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bx bxs-add-to-queue font-size-16 align-middle me-2"></i>Add
                                                 New</button>
                                             {{-- <button type="button" class="btn btn-primary waves-effect waves-light">Add New</button> --}}
                                         </div>
@@ -117,8 +114,8 @@
                     <div class="mb-3 row">
                         <label for="formrow-inputState" class="form-label">Marketing Manager</label>
                         <div class="col-md-12">
-                            <select class="form-control" id="parent" name="parent"
-                                placeholder="Select Marketing Agent">
+                            <select class="form-control" name="parent" id="parent" placeholder="Marketing Manager">
+
                             </select>
                         </div>
                     </div>
@@ -127,8 +124,7 @@
                     <div class="mb-3 row">
                         <label for="formrow-inputState" class="form-label">Store Manager</label>
                         <div class="col-md-12">
-                            <select class="form-control" name="store" id="store"
-                                placeholder="This is a search placeholder">
+                            <select class="form-control" name="store" id="store" placeholder="Store Manager">
 
                             </select>
                         </div>
@@ -159,8 +155,7 @@
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-inputCity" class="form-label">Alternate Phone</label>
-                            <input type="text" class="form-control" placeholder="Enter Alternate Phone"
-                                id="aphone">
+                            <input type="text" class="form-control" placeholder="Enter Alternate Phone" id="aphone">
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -225,9 +220,7 @@
                             Fields</label>
                         <div class="col-md-6 p-1">
 
-                            <button type="button" id="addfield"
-                                class="btn btn-outline-warning waves-effect waves-light"><i
-                                    class="fas fa-plus-square"></i> Add More</button>
+                            <button type="button" id="addfield" class="btn btn-outline-warning waves-effect waves-light"><i class="fas fa-plus-square"></i> Add More</button>
 
                         </div>
                     </div>
@@ -235,8 +228,7 @@
                         {{-- <label for="example-text-input" class="col-md-2 col-form-label">Domain Members</label> --}}
                         <div class="col-md-12">
                             <div id="fields">
-                                <input class="form-control" type="hidden" id="hidden" name="hidden"
-                                    value="0">
+                                <input class="form-control" type="hidden" id="hidden" name="hidden" value="0">
                             </div>
                         </div>
                     </div>
@@ -246,8 +238,7 @@
                         <label for="example-text-input" class="col-md-10 col-form-label"></label>
                         <div class="col-md-2">
 
-                            <button type="button" onclick="submit()"
-                                class="btn btn-primary waves-effect waves-light">Save</button>
+                            <button type="button" onclick="submit()" class="btn btn-primary waves-effect waves-light">Save</button>
                         </div>
                     </div>
                 </div>
@@ -273,8 +264,8 @@
                 })
                 console.log(response);
                 parent.setChoices(response,
-                    'value',
-                    'label',
+                    'id',
+                    'name',
                     false, );
             }
         });
@@ -296,8 +287,8 @@
         $("#addfield").click(function() {
             var newRowAdd =
                 '<div id="row" class="row"><div class="input-group m-3">' +
-                '<div class="col-6"><div class="input-group-prepend m-1"><input class="form-control" type="text" placeholder="Additional Field"></div> </div>' +
-                '<div class="col-4 mt-1"><select class="form-control " data-trigger name="choices-single-default" id="choices-single-default" placeholder=""><option>String</option><option>Number</option><option>Text</option></select> </div>' +
+                '<div class="col-6"><div class="input-group-prepend m-1"><input id="array[]" class="form-control" type="text" placeholder="Additional Field"></div> </div>' +
+                '<div class="col-4 mt-1"><select name="type[]" class="form-control " data-trigger name="choices-single-default" id="choices-single-default" placeholder=""><option>String</option><option>Number</option><option>Text</option></select> </div>' +
                 '<div class="col-2"><div class="input-group-prepend">' +
                 '<button type="button" id="DeleteRow" class="btn btn-outline-danger waves-effect waves-light m-1">Delete</button>' +
                 '<i class="bi bi-trash"></i></button></div> </div></div>' +
@@ -399,6 +390,14 @@
                             'Business Unit Created Successfully',
                             'success'
                         )
+                        var input = document.getElementsByName('array[]');
+
+                        for (var i = 0; i < input.length; i++) {
+                            var a = input[i];
+                            k = k + "array[" + i + "].value= " +
+                                a.value + " ";
+                        }
+
                     },
                     // Add more status code handlers as needed
                 },
