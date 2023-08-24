@@ -66,10 +66,11 @@
                                         <thead>
                                             <tr>
 
+                                                <th>S.No</th>
+                                                <th>Company</th>
                                                 <th>Title</th>
-                                                <th>Price</th>
-                                                <th>No of Licence</th>
-                                                <th>Description</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -114,8 +115,7 @@
                     <div class="mb-3 row">
                         <label for="example-text-input" class="col-md-2 col-form-label">Title</label>
                         <div class="col-md-10">
-                            <input class="form-control" type="text" placeholder="Enter Title"
-                                id="example-text-input">
+                            <input class="form-control" type="text" placeholder="Enter Title" id="example-text-input">
                         </div>
                     </div>
                 </div>
@@ -147,16 +147,14 @@
                             <div class="mb-3 row">
                                 <label for="example-text-input" class="col-md-2 col-form-label">Permissions</label>
                                 <div>
-                                    <button type="button" class="btn btn-primary waves-effect waves-light"
-                                    style="
+                                    <button type="button" class="btn btn-primary waves-effect waves-light" style="
                                     height: 35px;
                                     width: 100px;
                                     margin-bottom: 10px;
                                     font-size: small;
                                 ">Select
                                         all</button>
-                                    <button type="button" class="btn btn-primary waves-effect waves-light"
-                                    style="
+                                    <button type="button" class="btn btn-primary waves-effect waves-light" style="
                                     height: 35px;
                                     width: 100px;
                                     margin-bottom: 8px;
@@ -170,11 +168,20 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-12">
+                            <div class="mb-3 row">
+                                <div class="col-md-10">
+                                    <input class="form-control" type="hidden" id="hidden" name="hidden" value="0">
+                                    <!-- <input type="hidden" id="postId" name="postId" value="34657" /> -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                    <button type="button" id="button" onclick="submit()" name="button"
+                        class="btn btn-primary waves-effect waves-light">Save changes</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -182,6 +189,7 @@
     @include('partials.script')
 </body>
 <script>
+var table =
     $(document).ready(function() {
         $('#myTable').DataTable({
             dom: 'Bfrtip',
@@ -203,7 +211,136 @@
                 // Add more buttons and classes as needed
             ]
         });
+        fetchtable()
     });
+
+function fetchtable() {
+    var settings = {
+        "url": "http://localhost:8000/api/roles",
+        "method": "GET",
+        "timeout": 0,
+    };
+    $.ajax(settings).done(function(response) {
+        console.log(response);
+        table.clear().draw();
+        $.each(response, function(index, data) {
+            table.row.add([
+                data.company_id,
+                data.title,
+                '<button type="button"id="edit" name="edit"  onclick="editData(' +
+                data.id +
+                ')"  class="btn btn-soft-warning waves-effect waves-light"><i class="bx bx-edit-alt font-size-16 align-middle"></i></button>',
+                '<button type="button" id="delete" name="delete" onclick="deleteData(' +
+                data.id +
+                ')" class="btn btn-soft-danger waves-effect waves-light"><i class="bx bx-trash-alt font-size-16 align-middle"></i></button>'
+            ]).draw(false);
+        });
+    });
+}
+
+function submit() {
+    var update_id = document.getElementById("hidden").value;
+    console.log(update_id);
+    if (update_id == 0) {
+        var form = new FormData();
+        form.append("company_id", "0");
+        form.append("title", document.getElementById('example-text-input').value);
+
+        var settings = {
+            "url": "http://localhost:8000/api/roles",
+            "method": "POST",
+            "timeout": 0,
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form
+        };
+
+        $.ajax({
+            ...settings,
+            statusCode: {
+                200: function(response) {
+                    console.log(response);
+                    $('#myModal').modal('hide');
+                    console.log("Request was successful");
+                    document.getElementById('example-text-input').value = "";
+                    document.getElementById('hidden').value = "";
+                    fetchtable();
+                    Swal.fire(
+                        'Success!',
+                        'Type Created Successfully',
+                        'success'
+                    )
+                },
+                // Add more status code handlers as needed
+            },
+            success: function(data) {
+                // $('#myModal').reset();
+                // Additional success handling if needed
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                Swal.fire(
+                    'Server Error!',
+                    'Type Not Created',
+                    'error'
+                )
+
+                // console.log("Request failed with status code: " + xhr.status);
+            }
+        });
+    } else {
+        alert(update_id);
+        var settings = {
+            "url": "http://localhost:8000/api/roles/" + update_id + "",
+            "method": "PUT",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({
+                "company_id": 0,
+                "title": document.getElementById('example-text-input').value,
+            }),
+        };
+
+        $.ajax({
+            ...settings,
+            statusCode: {
+                200: function(response) {
+                    console.log(response);
+                    $('#myModal').modal('hide');
+                    document.getElementById('example-text-input').value = "";
+                    document.getElementById('hidden').value = "";
+                    // console.log("Request was successful");
+                    fetchtable();
+                    Swal.fire(
+                        'Success!',
+                        'Type updated Successfully',
+                        'success'
+                    )
+                },
+                // Add more status code handlers as needed
+            },
+            success: function(data) {
+                // Additional success handling if needed
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                Swal.fire(
+                    'Server Error!',
+                    'Type Not updated',
+                    'error'
+                )
+
+                // console.log("Request failed with status code: " + xhr.status);
+            }
+        });
+
+
+
+        // alert("Update Records Here");
+
+    }
+}
 </script>
 
 </html>

@@ -13,6 +13,13 @@ use App\Http\Controllers\BusinessUnitController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\SubscriptionPackageController;
 use App\Http\Controllers\BuFieldController;
+use App\Http\Controllers\DomainController;
+use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -114,3 +121,38 @@ Route::get('bu_fields', [BuFieldController::class, 'index']);
 Route::post('bu_fields', [BuFieldController::class, 'store']);
 Route::get('bu_fields/{id}', [BuFieldController::class, 'show']);
 Route::delete('bu_fields/{id}', [BuFieldController::class, 'destroy']);
+
+
+Route::get('domains', [DomainController::class, 'index']);
+Route::post('domains', [DomainController::class, 'store']);
+Route::get('domains/{id}', [DomainController::class, 'show']);
+Route::put('domains/{id}', [DomainController::class, 'update']);
+Route::delete('domains/{id}', [DomainController::class, 'destroy']);
+
+
+Route::get('designations', [DesignationController::class, 'index']);
+Route::post('designations', [DesignationController::class, 'store']);
+Route::get('designations/{id}', [DesignationController::class, 'show']);
+Route::put('designations/{id}', [DesignationController::class, 'update']);
+Route::delete('designations/{id}', [DesignationController::class, 'destroy']);
+
+
+Route::get('tickets', [TicketController::class, 'index']);
+Route::post('tickets', [TicketController::class, 'store']);
+Route::get('tickets/{id}', [TicketController::class, 'show']);
+Route::put('tickets/{id}', [TicketController::class, 'update']);
+Route::delete('tickets/{id}', [TicketController::class, 'destroy']);
+
+
+Route::get('permissions', [PermissionController::class, 'index']);
+Route::post('permissions', [PermissionController::class, 'store']);
+Route::get('permissions/{id}', [PermissionController::class, 'show']);
+Route::put('permissions/{id}', [PermissionController::class, 'update']);
+Route::delete('permissions/{id}', [PermissionController::class, 'destroy']);
+
+
+Route::get('roles', [RoleController::class, 'index']);
+Route::post('roles', [RoleController::class, 'store']);
+Route::get('roles/{id}', [RoleController::class, 'show']);
+Route::put('roles/{id}', [RoleController::class, 'update']);
+Route::delete('roles/{id}', [RoleController::class, 'destroy']);

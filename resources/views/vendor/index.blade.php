@@ -251,7 +251,7 @@
         })
         $("#type").change(function() {
             var end = this.value;
-            alert(end);
+            // alert(end);
             $.ajax({
                 url: "http://localhost:8000/api/types/parent/" + end + "",
                 type: 'GET',

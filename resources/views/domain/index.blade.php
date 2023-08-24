@@ -65,10 +65,11 @@
                                     <table id="myTable">
                                         <thead>
                                             <tr>
-                                                <th>Company</th>
+                                                <th>S.No</th>
                                                 <th>Title</th>
-                                                <th>Business Unit</th>
-                                                <th>Action</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -108,7 +109,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel">Create Domain</h5>
+                    <h5 id="labelc">Create</h5>
+                    <br>
+                    <h5>Domains</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -119,6 +122,14 @@
                                 <div class="col-md-10">
                                     <input class="form-control" type="text" placeholder="Enter Domain Title"
                                         id="example-text-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3 row">
+                                <div class="col-md-10">
+                                    <input class="form-control" type="hidden" id="hidden" name="hidden" value="0">
+                                    <!-- <input type="hidden" id="postId" name="postId" value="34657" /> -->
                                 </div>
                             </div>
                         </div>
@@ -152,7 +163,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                    <button type="button" id="button" onclick="submit()" name="button"
+                        class="btn btn-primary waves-effect waves-light">Save changes</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -160,48 +172,250 @@
     @include('partials.script')
 </body>
 <script>
-    $(document).ready(function() {
-        // $('#textbox1').val(this.checked);
+$(document).ready(function() {
+    // $('#textbox1').val(this.checked);
 
-        $("#addfield").click(function() {
-            var newRowAdd =
-                '<div id="row" class="row"><div class="input-group m-3">' +
-                '<div class="col-3"><div class="input-group-prepend">' +
-                '<button type="button" id="DeleteRow" class="btn btn-outline-danger waves-effect waves-light m-1">Delete</button>' +
-                '<i class="bi bi-trash"></i></button></div> </div>' +
-                '<div class="col-4"><div class="input-group-prepend m-1"><input class="form-control" type="text" placeholder="Additional Field"></div> </div><div class="col-1"></div>' +
-                '<div class="col-4"><select class="form-control " data-trigger name="choices-single-default" id="choices-single-default" placeholder=""><option>String</option><option>Number</option><option>Text</option></select> </div> </div>' +
-                '';
+    $("#addfield").click(function() {
+        var newRowAdd =
+            '<div id="row" class="row"><div class="input-group m-3">' +
+            '<div class="col-3"><div class="input-group-prepend">' +
+            '<button type="button" id="DeleteRow" class="btn btn-outline-danger waves-effect waves-light m-1">Delete</button>' +
+            '<i class="bi bi-trash"></i></button></div> </div>' +
+            '<div class="col-4"><div class="input-group-prepend m-1"><input class="form-control" type="text" placeholder="Additional Field"></div> </div><div class="col-1"></div>' +
+            '<div class="col-4"><select class="form-control " data-trigger name="choices-single-default" id="choices-single-default" placeholder=""><option>String</option><option>Number</option><option>Text</option></select> </div> </div>' +
+            '';
 
-            $('#fields').append(newRowAdd);
-            // alert("The paragraph was clicked.");
-        });
+        $('#fields').append(newRowAdd);
+        // alert("The paragraph was clicked.");
+    });
+    $("body").on("click", "#DeleteRow", function() {
+        $(this).parents("#row").remove();
+    })
+});
 
+var table;
+$(document).ready(function() {
 
-        $("body").on("click", "#DeleteRow", function() {
-            $(this).parents("#row").remove();
-        })
-        $('#myTable').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-                'colvis',
-                {
-                    extend: 'csv',
-                    // Add the custom class to the CSV button
-                },
-                {
-                    extend: 'excel', // Add the custom class to the Excel button
-                },
-                {
-                    extend: 'pdf', // Add the custom class to the Excel button
-                },
-                {
-                    extend: 'print', // Add the custom class to the Excel button
-                }
-                // Add more buttons and classes as needed
-            ]
+    table = $('#myTable').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'colvis',
+            {
+                extend: 'csv',
+                // Add the custom class to the CSV button
+            },
+            {
+                extend: 'excel', // Add the custom class to the Excel button
+            },
+            {
+                extend: 'pdf', // Add the custom class to the Excel button
+            },
+            {
+                extend: 'print', // Add the custom class to the Excel button
+            }
+            // Add more buttons and classes as needed
+        ]
+    });
+    fetchtable();
+
+});
+
+function fetchtable() {
+    var settings = {
+        "url": "http://localhost:8000/api/domains",
+        "method": "GET",
+        "timeout": 0,
+    };
+    $.ajax(settings).done(function(response) {
+        console.log(response);
+        table.clear().draw();
+        $.each(response, function(index, data) {
+            table.row.add([
+                index + 1,
+                data.title,
+                '<button type="button"id="edit" name="edit"  onclick="editData(' +
+                data.id +
+                ')"  class="btn btn-soft-warning waves-effect waves-light"><i class="bx bx-edit-alt font-size-16 align-middle"></i></button>',
+                '<button type="button" id="delete" name="delete" onclick="deleteData(' +
+                data.id +
+                ')" class="btn btn-soft-danger waves-effect waves-light"><i class="bx bx-trash-alt font-size-16 align-middle"></i></button>'
+            ]).draw(false);
         });
     });
+}
+
+function submit() {
+    var update_id = document.getElementById("hidden").value;
+    console.log(update_id);
+    if (update_id == 0) {
+        var form = new FormData();
+        form.append("title", document.getElementById('example-text-input').value);
+        form.append("status", "1");
+
+        var settings = {
+            "url": "http://localhost:8000/api/domains",
+            "method": "POST",
+            "timeout": 0,
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form
+        };
+        $.ajax({
+            ...settings,
+            statusCode: {
+                200: function(response) {
+                    console.log(response);
+                    $('#myModal').modal('hide');
+                    console.log("Request was successful");
+                    document.getElementById('example-text-input').value = "";
+                    document.getElementById('hidden').value = "";
+                    fetchtable();
+                    Swal.fire(
+                        'Success!',
+                        'Type Created Successfully',
+                        'success'
+                    )
+                },
+                // Add more status code handlers as needed
+            },
+            success: function(data) {
+                // $('#myModal').reset();
+                // Additional success handling if needed
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                Swal.fire(
+                    'Server Error!',
+                    'Type Not Created',
+                    'error'
+                )
+
+                // console.log("Request failed with status code: " + xhr.status);
+            }
+        });
+    } else {
+        var settings = {
+            "url": "http://localhost:8000/api/domains/" + update_id + "",
+            "method": "PUT",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({
+                "title": document.getElementById('example-text-input').value,
+                "status": 1
+            }),
+        };
+        $.ajax({
+            ...settings,
+            statusCode: {
+                200: function(response) {
+                    console.log(response);
+                    $('#myModal').modal('hide');
+                    document.getElementById('example-text-input').value = "";
+                    document.getElementById('hidden').value = "";
+                    // console.log("Request was successful");
+                    fetchtable();
+                    Swal.fire(
+                        'Success!',
+                        'Type updated Successfully',
+                        'success'
+                    )
+                },
+                // Add more status code handlers as needed
+            },
+            success: function(data) {
+                // Additional success handling if needed
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                Swal.fire(
+                    'Server Error!',
+                    'Type Not updated',
+                    'error'
+                )
+
+                // console.log("Request failed with status code: " + xhr.status);
+            }
+        });
+
+    }
+}
+
+function editData(id) {
+    // alert("waqar")
+    var settings = {
+        "url": "http://localhost:8000/api/domains/" + id + "",
+        "method": "GET",
+        "timeout": 0,
+    };
+    $.ajax({
+            ...settings,
+            statusCode: {
+                200: function(response) {
+                    console.log(response[0]['title']);
+                    document.getElementById('example-text-input').value = response[0]['title'];
+                    document.getElementById('hidden').value = response[0]['id'];
+                    // $("#parent").val(response[0]['parent']);
+                    $('#myModal').modal('show');
+                    document.getElementById("labelc").innerHTML = 'Update'
+
+
+                },
+                // Add more status code handlers as needed
+            },
+            success: function(data) {
+                // Additional success handling if needed
+            },
+            error: function(xhr, textStatus, errorThrown) {
+                Swal.fire(
+                    'Server Error!',
+                    '',
+                    'error'
+                )
+
+                // console.log("Request failed with status code: " + xhr.status);
+            }
+        });
+}
+function deleteData(id) {
+
+// alert(id);
+var settings = {
+    "url": "http://localhost:8000/api/domains/" + id + "",
+    "method": "DELETE",
+    "timeout": 0,
+};
+
+$.ajax({
+    ...settings,
+    statusCode: {
+        200: function(response) {
+            console.log(response);
+            // $('#myModal').modal('hide');
+            // console.log("Request was successful");
+            fetchtable();
+            Swal.fire(
+                'Success!',
+                'Status Deleted Successfully',
+                'success'
+            )
+        },
+        // Add more status code handlers as needed
+    },
+    success: function(data) {
+        // Additional success handling if needed
+    },
+    error: function(xhr, textStatus, errorThrown) {
+        Swal.fire(
+            'Server Error!',
+            'Type Not Deleted',
+            'error'
+        )
+
+        // console.log("Request failed with status code: " + xhr.status);
+    }
+});
+};
 </script>
 
 </html>

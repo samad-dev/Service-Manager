@@ -60,6 +60,9 @@ Route::get('/Subscription', function () {
 Route::get('/Tickets', function () {
     return view('Tickets/index');
 });
+Route::get('/new', function () {
+    return view('Tickets/new');
+});
 Route::get('/Permission', function () {
     return view('um/permission');
 });

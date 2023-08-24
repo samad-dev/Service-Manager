@@ -103,6 +103,12 @@
                         <span class="menu-item" data-key="t-calendar">Tickets</span>
                     </a>
                 </li>
+                <li>
+                    <a href="/new">
+                        <i class="mdi mdi-ticket-confirmation icon nav-icon"></i>
+                        <span class="menu-item" data-key="t-calendar">new</span>
+                    </a>
+                </li>
                 
                 
                 <li>
