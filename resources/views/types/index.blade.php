@@ -203,7 +203,7 @@
 
 
         $.ajax({
-            url: "http://localhost:8000/api/companytype/0",
+            url: "api/companytype/0",
             type: 'GET',
             dataType: 'json',
             success: function(response) {
@@ -245,7 +245,7 @@
 
     function fetchtable() {
         var settings = {
-            "url": "http://localhost:8000/api/types",
+            "url": "api/types",
             "method": "GET",
             "timeout": 0,
         };
@@ -286,7 +286,7 @@
 
 
             var settings = {
-                "url": "http://localhost:8000/api/types",
+                "url": "api/types",
                 "method": "POST",
                 "timeout": 0,
                 "processData": false,
@@ -331,7 +331,7 @@
         } else {
             var parent_id = $('#parent').find(":selected").val();
             var settings = {
-                "url": "http://localhost:8000/api/types/" + update_id + "",
+                "url": "api/types/" + update_id + "",
                 "method": "PUT",
                 "timeout": 0,
                 "headers": {
@@ -388,7 +388,7 @@
     function editData(id) {
         // alert(id);
         var settings = {
-            "url": "http://localhost:8000/api/types/" + id + "",
+            "url": "api/types/" + id + "",
             "method": "GET",
             "timeout": 0,
         };
@@ -431,7 +431,7 @@
 
         // alert(id);
         var settings = {
-            "url": "http://localhost:8000/api/types/" + id + "",
+            "url": "api/types/" + id + "",
             "method": "DELETE",
             "timeout": 0,
         };
@@ -470,7 +470,7 @@
     function getparent() {
         // parent.setChoices(async () => {
         //     try {
-        //         const items = await fetch('http://localhost:8000/api/companytype/0');
+        //         const items = await fetch('api/companytype/0');
         //         return items.json();
         //     } catch (err) {
         //         console.error(err);

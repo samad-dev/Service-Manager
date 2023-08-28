@@ -191,7 +191,7 @@ var table;
 
 function fetchtable() {
     var settings = {
-        "url": "http://localhost:8000/api/permissions",
+        "url": "api/permissions",
         "method": "GET",
         "timeout": 0,
     };
@@ -226,7 +226,7 @@ function submit() {
 
 
         var settings = {
-            "url": "http://localhost:8000/api/permissions",
+            "url": "api/permissions",
             "method": "POST",
             "timeout": 0,
             "processData": false,
@@ -270,7 +270,7 @@ function submit() {
 
     } else {
         var settings = {
-            "url": "http://localhost:8000/api/permissions/" + update_id + "",
+            "url": "api/permissions/" + update_id + "",
             "method": "PUT",
             "timeout": 0,
             "headers": {
@@ -325,7 +325,7 @@ function submit() {
 
 function editData(id) {
         var settings = {
-            "url": "http://localhost:8000/api/permissions/" + id + "",
+            "url": "api/permissions/" + id + "",
             "method": "GET",
             "timeout": 0,
         };
@@ -362,7 +362,7 @@ function editData(id) {
 
 alert(id);
 var settings = {
-    "url": "http://localhost:8000/api/permissions/" + id + "",
+    "url": "api/permissions/" + id + "",
     "method": "DELETE",
     "timeout": 0,
 };

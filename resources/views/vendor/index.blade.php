@@ -253,7 +253,7 @@
             var end = this.value;
             // alert(end);
             $.ajax({
-                url: "http://localhost:8000/api/types/parent/" + end + "",
+                url: "api/types/parent/" + end + "",
                 type: 'GET',
                 dataType: 'json',
                 success: function(response) {
@@ -268,7 +268,7 @@
 
         });
         $.ajax({
-            url: "http://localhost:8000/api/types",
+            url: "api/types",
             type: 'GET',
             dataType: 'json',
             success: function(response) {
@@ -295,7 +295,7 @@
 
     function fetchtable() {
         var settings = {
-            "url": "http://localhost:8000/api/vendors",
+            "url": "api/vendors",
             "method": "GET",
             "timeout": 0,
         };
@@ -345,7 +345,7 @@
             form.append("status", '1');
 
             var settings = {
-                "url": "http://localhost:8000/api/vendors",
+                "url": "api/vendors",
                 "method": "POST",
                 "timeout": 0,
                 "processData": false,
@@ -387,7 +387,7 @@
         } else {
             var subid = $('#subtype').find(":selected").val();
             var settings = {
-                "url": "http://localhost:8000/api/vendors/" + update_id + "",
+                "url": "api/vendors/" + update_id + "",
                 "method": "PUT",
                 "timeout": 0,
                 "headers": {
@@ -454,7 +454,7 @@
     function editData(id) {
         // alert(id);
         var settings = {
-            "url": "http://localhost:8000/api/vendors/" + id + "",
+            "url": "api/vendors/" + id + "",
             "method": "GET",
             "timeout": 0,
         };
@@ -502,7 +502,7 @@
 
     function deleteData(id) {
         var settings = {
-            "url": "http://localhost:8000/api/vendors/" + id + "",
+            "url": "api/vendors/" + id + "",
             "method": "DELETE",
             "timeout": 0,
         };

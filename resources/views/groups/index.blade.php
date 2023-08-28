@@ -176,7 +176,7 @@
     var bu_s;
     $(document).ready(function() {
         $.ajax({
-            url: "http://localhost:8000/api/business_units",
+            url: "api/business_units",
             type: 'GET',
             dataType: 'json',
             success: function(response) {
@@ -191,7 +191,7 @@
             }
         });
         $.ajax({
-            url: "http://localhost:8000/api/users",
+            url: "api/users",
             type: 'GET',
             dataType: 'json',
             success: function(response) {
@@ -231,7 +231,7 @@
 
     function fetchtable() {
         var settings = {
-            "url": "http://localhost:8000/api/bu_groups",
+            "url": "api/bu_groups",
             "method": "GET",
             "timeout": 0,
         };
@@ -270,7 +270,7 @@
             form.append("created_by", "1");
 
             var settings = {
-                "url": "http://localhost:8000/api/bu_groups",
+                "url": "api/bu_groups",
                 "method": "POST",
                 "timeout": 0,
                 "processData": false,
@@ -305,7 +305,7 @@
                             form.append("member_id", opt);
 
                             var settings = {
-                                "url": "http://localhost:8000/api/group-members",
+                                "url": "api/group-members",
                                 "method": "POST",
                                 "timeout": 0,
                                 "processData": false,
@@ -377,7 +377,7 @@
         } else {
             var bu_id = $('#bu_s').find(":selected").val();
             var settings = {
-                "url": "http://localhost:8000/api/bu_groups/" + update_id + "",
+                "url": "api/bu_groups/" + update_id + "",
                 "method": "PUT",
                 "timeout": 0,
                 "headers": {
@@ -402,7 +402,7 @@
                         // document.getElementById('hidden').value = "";
                         // console.log("Request was successful");
                         var settings = {
-                            "url": "http://localhost:8000/api/group-members/group/" + update_id + "",
+                            "url": "api/group-members/group/" + update_id + "",
                             "method": "DELETE",
                             "timeout": 0,
                         };
@@ -421,7 +421,7 @@
                                         form.append("member_id", opt);
 
                                         var settings = {
-                                            "url": "http://localhost:8000/api/group-members",
+                                            "url": "api/group-members",
                                             "method": "POST",
                                             "timeout": 0,
                                             "processData": false,
@@ -517,7 +517,7 @@
     function editData(id) {
         // alert(id);
         var settings = {
-            "url": "http://localhost:8000/api/bu_groups/" + id + "",
+            "url": "api/bu_groups/" + id + "",
             "method": "GET",
             "timeout": 0,
         };
@@ -552,7 +552,7 @@
             }
         });
         var settings2 = {
-            "url": "http://localhost:8000/api/group-members/group/" + id + "",
+            "url": "api/group-members/group/" + id + "",
             "method": "GET",
             "timeout": 0,
         };
@@ -596,7 +596,7 @@
     function deleteData(id) {
 
         var settings = {
-            "url": "http://localhost:8000/api/bu_groups/" + id + "",
+            "url": "api/bu_groups/" + id + "",
             "method": "DELETE",
             "timeout": 0,
         };

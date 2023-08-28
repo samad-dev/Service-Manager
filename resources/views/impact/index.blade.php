@@ -176,7 +176,7 @@
 
     function fetchtable() {
         var settings = {
-            "url": "http://localhost:8000/api/impacts",
+            "url": "api/impacts",
             "method": "GET",
             "timeout": 0,
         };
@@ -211,7 +211,7 @@
 
 
             var settings = {
-                "url": "http://localhost:8000/api/impacts",
+                "url": "api/impacts",
                 "method": "POST",
                 "timeout": 0,
                 "processData": false,
@@ -255,7 +255,7 @@
 
         } else {
             var settings = {
-                "url": "http://localhost:8000/api/impacts/" + update_id + "",
+                "url": "api/impacts/" + update_id + "",
                 "method": "PUT",
                 "timeout": 0,
                 "headers": {
@@ -310,7 +310,7 @@
 
     function editData(id) {
         var settings = {
-            "url": "http://localhost:8000/api/impacts/" + id + "",
+            "url": "api/impacts/" + id + "",
             "method": "GET",
             "timeout": 0,
         };
@@ -348,7 +348,7 @@
 
         alert(id);
         var settings = {
-            "url": "http://localhost:8000/api/impacts/" + id + "",
+            "url": "api/impacts/" + id + "",
             "method": "DELETE",
             "timeout": 0,
         };

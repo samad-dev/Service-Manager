@@ -192,7 +192,7 @@ $(document).ready(function() {
 
 function fetchtable() {
     var settings = {
-        "url": "http://localhost:8000/api/subscription-packages",
+        "url": "api/subscription-packages",
         "method": "GET",
         "timeout": 0,
     };
@@ -228,7 +228,7 @@ function submit() {
         form.append("description", document.getElementById("discription").value);
 
         var settings = {
-            "url": "http://localhost:8000/api/subscription-packages",
+            "url": "api/subscription-packages",
             "method": "POST",
             "timeout": 0,
             "processData": false,
@@ -273,7 +273,7 @@ function submit() {
     } else {
 
         var settings = {
-            "url": "http://localhost:8000/api/subscription-packages/" + update_id + "",
+            "url": "api/subscription-packages/" + update_id + "",
             "method": "PUT",
             "timeout": 0,
             "headers": {
@@ -328,7 +328,7 @@ function submit() {
 
 function editData(id) {
     var settings = {
-        "url": "http://localhost:8000/api/subscription-packages/" + id + "",
+        "url": "api/subscription-packages/" + id + "",
         "method": "GET",
         "timeout": 0,
     };
@@ -368,7 +368,7 @@ function editData(id) {
 function deleteData(id) {
 
     var settings = {
-        "url": "http://localhost:8000/api/subscription-packages/" + id + "",
+        "url": "api/subscription-packages/" + id + "",
         "method": "DELETE",
         "timeout": 0,
     };

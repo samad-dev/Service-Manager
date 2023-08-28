@@ -255,7 +255,7 @@
     var store;
     $(document).ready(function() {
         $.ajax({
-            url: "http://localhost:8000/api/users",
+            url: "api/users",
             type: 'GET',
             dataType: 'json',
             success: function(response) {
@@ -270,7 +270,7 @@
             }
         });
         $.ajax({
-            url: "http://localhost:8000/api/users",
+            url: "api/users",
             type: 'GET',
             dataType: 'json',
             success: function(response) {
@@ -313,7 +313,7 @@
 
     function fetchtable() {
         var settings = {
-            "url": "http://localhost:8000/api/business_units",
+            "url": "api/business_units",
             "method": "GET",
             "timeout": 0,
         };
@@ -367,7 +367,7 @@
             form.append("properties", "[]");
 
             var settings = {
-                "url": "http://localhost:8000/api/business_units",
+                "url": "api/business_units",
                 "method": "POST",
                 "timeout": 0,
                 "processData": false,
@@ -409,7 +409,7 @@
                             form.append("type", b.value);
                             form.append("bu_id", inserted_id);
                             var setting2 = {
-                                "url": "http://localhost:8000/api/bu_fields",
+                                "url": "api/bu_fields",
                                 "method": "POST",
                                 "timeout": 0,
                                 "processData": false,
@@ -472,7 +472,7 @@
             var market = $('#parent').find(":selected").val();
             var store = $('#store').find(":selected").val();
             var settings = {
-                "url": "http://localhost:8000/api/business_units/" + update_id + "",
+                "url": "api/business_units/" + update_id + "",
                 "method": "PUT",
                 "timeout": 0,
                 "headers": {
@@ -551,7 +551,7 @@
     function editData(id) {
         // alert(id);
         var settings = {
-            "url": "http://localhost:8000/api/business_units/" + id + "",
+            "url": "api/business_units/" + id + "",
             "method": "GET",
             "timeout": 0,
         };
@@ -604,7 +604,7 @@
     function deleteData(id) {
 
         var settings = {
-            "url": "http://localhost:8000/api/business_units/" + id + "",
+            "url": "api/business_units/" + id + "",
             "method": "DELETE",
             "timeout": 0,
         };

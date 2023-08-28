@@ -222,7 +222,7 @@ $(document).ready(function() {
 
 function fetchtable() {
     var settings = {
-        "url": "http://localhost:8000/api/domains",
+        "url": "api/domains",
         "method": "GET",
         "timeout": 0,
     };
@@ -253,7 +253,7 @@ function submit() {
         form.append("status", "1");
 
         var settings = {
-            "url": "http://localhost:8000/api/domains",
+            "url": "api/domains",
             "method": "POST",
             "timeout": 0,
             "processData": false,
@@ -295,7 +295,7 @@ function submit() {
         });
     } else {
         var settings = {
-            "url": "http://localhost:8000/api/domains/" + update_id + "",
+            "url": "api/domains/" + update_id + "",
             "method": "PUT",
             "timeout": 0,
             "headers": {
@@ -344,7 +344,7 @@ function submit() {
 function editData(id) {
     // alert("waqar")
     var settings = {
-        "url": "http://localhost:8000/api/domains/" + id + "",
+        "url": "api/domains/" + id + "",
         "method": "GET",
         "timeout": 0,
     };
@@ -381,7 +381,7 @@ function deleteData(id) {
 
 // alert(id);
 var settings = {
-    "url": "http://localhost:8000/api/domains/" + id + "",
+    "url": "api/domains/" + id + "",
     "method": "DELETE",
     "timeout": 0,
 };

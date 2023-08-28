@@ -193,7 +193,7 @@ $(document).ready(function() {
 
 function fetchtable() {
     var settings = {
-        "url": "http://localhost:8000/api/status",
+        "url": "api/status",
         "method": "GET",
         "timeout": 0,
     };
@@ -226,7 +226,7 @@ function fetchtable() {
 //     form.append("active", "1");
 
 //     var settings = {
-//         "url": "http://localhost:8000/api/status",
+//         "url": "api/status",
 //         "method": "POST",
 //         "timeout": 0,
 //         "processData": false,
@@ -278,7 +278,7 @@ function submit() {
 
 
         var settings = {
-            "url": "http://localhost:8000/api/status",
+            "url": "api/status",
             "method": "POST",
             "timeout": 0,
             "processData": false,
@@ -322,7 +322,7 @@ function submit() {
 
     } else {
         var settings = {
-            "url": "http://localhost:8000/api/status/" + update_id + "",
+            "url": "api/status/" + update_id + "",
             "method": "PUT",
             "timeout": 0,
             "headers": {
@@ -378,7 +378,7 @@ function submit() {
 function editData(id) {
     // alert(id);
     var settings = {
-        "url": "http://localhost:8000/api/status/" + id + "",
+        "url": "api/status/" + id + "",
         "method": "GET",
         "timeout": 0,
     };
@@ -417,7 +417,7 @@ function deleteData(id) {
 
     // alert(id);
     var settings = {
-        "url": "http://localhost:8000/api/status/" + id + "",
+        "url": "api/status/" + id + "",
         "method": "DELETE",
         "timeout": 0,
     };

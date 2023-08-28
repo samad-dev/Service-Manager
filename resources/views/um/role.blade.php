@@ -216,7 +216,7 @@ var table =
 
 function fetchtable() {
     var settings = {
-        "url": "http://localhost:8000/api/roles",
+        "url": "api/roles",
         "method": "GET",
         "timeout": 0,
     };
@@ -247,7 +247,7 @@ function submit() {
         form.append("title", document.getElementById('example-text-input').value);
 
         var settings = {
-            "url": "http://localhost:8000/api/roles",
+            "url": "api/roles",
             "method": "POST",
             "timeout": 0,
             "processData": false,
@@ -291,7 +291,7 @@ function submit() {
     } else {
         alert(update_id);
         var settings = {
-            "url": "http://localhost:8000/api/roles/" + update_id + "",
+            "url": "api/roles/" + update_id + "",
             "method": "PUT",
             "timeout": 0,
             "headers": {

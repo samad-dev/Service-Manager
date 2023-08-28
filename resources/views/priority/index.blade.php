@@ -182,7 +182,7 @@
 
     function fetchtable() {
         var settings = {
-            "url": "http://localhost:8000/api/priority",
+            "url": "api/priority",
             "method": "GET",
             "timeout": 0,
         };
@@ -217,7 +217,7 @@
             form.append("sla", document.getElementById('sla').value);
 
             var settings = {
-                "url": "http://localhost:8000/api/priority",
+                "url": "api/priority",
                 "method": "POST",
                 "timeout": 0,
                 "processData": false,
@@ -260,7 +260,7 @@
         } else {
             alert(update_id);
             var settings = {
-                "url": "http://localhost:8000/api/priority/" + update_id + "",
+                "url": "api/priority/" + update_id + "",
                 "method": "PUT",
                 "timeout": 0,
                 "headers": {
@@ -316,7 +316,7 @@
     function editData(id) {
         // alert(id);
         var settings = {
-            "url": "http://localhost:8000/api/priority/" + id + "",
+            "url": "api/priority/" + id + "",
             "method": "GET",
             "timeout": 0,
         };
@@ -354,7 +354,7 @@
 
     function deleteData(id) {
         var settings = {
-            "url": "http://localhost:8000/api/priority/ " + id + "",
+            "url": "api/priority/ " + id + "",
             "method": "DELETE",
             "timeout": 0,
         };

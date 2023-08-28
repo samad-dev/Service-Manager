@@ -140,7 +140,9 @@ Route::delete('designations/{id}', [DesignationController::class, 'destroy']);
 Route::get('tickets', [TicketController::class, 'index']);
 Route::post('tickets', [TicketController::class, 'store']);
 Route::get('tickets/{id}', [TicketController::class, 'show']);
+Route::post('tickets/activity', [TicketController::class, 'saveactivity']);
 Route::put('tickets/{id}', [TicketController::class, 'update']);
+Route::put('tickets/vendor/{id}', [TicketController::class, 'updatevendor']);
 Route::delete('tickets/{id}', [TicketController::class, 'destroy']);
 
 

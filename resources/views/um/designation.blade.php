@@ -200,7 +200,7 @@ var table =
 
 function fetchtable() {
     var settings = {
-        "url": "http://localhost:8000/api/designations",
+        "url": "api/designations",
         "method": "GET",
         "timeout": 0,
     };
@@ -225,7 +225,7 @@ function fetchtable() {
 }
 // function fetchtable() {
 //     var settings = {
-//         "url": "http://localhost:8000/api/designations",
+//         "url": "api/designations",
 //         "method": "GET",
 //         "timeout": 0,
 //     };
@@ -256,7 +256,7 @@ function submit() {
         form.append("title", document.getElementById('example-text-input').value);
 
         var settings = {
-            "url": "http://localhost:8000/api/designations",
+            "url": "api/designations",
             "method": "POST",
             "timeout": 0,
             "processData": false,
@@ -300,7 +300,7 @@ function submit() {
     } else {
         alert(update_id);
         var settings = {
-            "url": "http://localhost:8000/api/designations/" + update_id + "",
+            "url": "api/designations/" + update_id + "",
             "method": "PUT",
             "timeout": 0,
             "headers": {
@@ -356,7 +356,7 @@ function submit() {
 function editData(id) {
     // alert(id);
     var settings = {
-        "url": "http://localhost:8000/api/designations/" + id + "",
+        "url": "api/designations/" + id + "",
         "method": "GET",
         "timeout": 0,
     };
@@ -395,7 +395,7 @@ function deleteData(id) {
 
     // alert(id);
     var settings = {
-        "url": "http://localhost:8000/api/designations/" + id + "",
+        "url": "api/designations/" + id + "",
         "method": "DELETE",
         "timeout": 0,
     };
