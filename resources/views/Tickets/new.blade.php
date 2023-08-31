@@ -606,11 +606,6 @@
                         <script>
                             var vendor_upd, vendors
                             $(document).ready(function() {
-
-
-
-
-
                                 editData({{ request()->segment(2) }});
                             });
 

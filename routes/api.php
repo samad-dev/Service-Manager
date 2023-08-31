@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ImpactController;
 use App\Http\Controllers\PriorityController;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\CompanyController;
 
 
 /*
@@ -130,6 +132,8 @@ Route::put('domains/{id}', [DomainController::class, 'update']);
 Route::delete('domains/{id}', [DomainController::class, 'destroy']);
 
 
+Route::post('login', [AuthController::class, 'login']);
+
 Route::get('designations', [DesignationController::class, 'index']);
 Route::post('designations', [DesignationController::class, 'store']);
 Route::get('designations/{id}', [DesignationController::class, 'show']);
@@ -158,3 +162,10 @@ Route::post('roles', [RoleController::class, 'store']);
 Route::get('roles/{id}', [RoleController::class, 'show']);
 Route::put('roles/{id}', [RoleController::class, 'update']);
 Route::delete('roles/{id}', [RoleController::class, 'destroy']);
+
+
+Route::get('companies',  [CompanyController::class, 'index']);
+Route::post('companies',  [CompanyController::class, 'store']);
+Route::get('companies/{id}',  [CompanyController::class, 'show']);
+Route::put('companies/{id}',  [CompanyController::class, 'update']);
+Route::delete('companies/{id}',  [CompanyController::class, 'destroy']);

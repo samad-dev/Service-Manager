@@ -59,7 +59,10 @@
                                             {{-- <button type="button" class="btn btn-soft-primary waves-effect waves-light"  data-bs-toggle="modal" data-bs-target="#myModal">
                                                      Add New
                                                 </button> --}}
-                                            <button class="btn btn-soft-primary waves-effect waves-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bx bxs-add-to-queue font-size-16 align-middle me-2"></i>Add
+                                            <button class="btn btn-soft-primary waves-effect waves-light" type="button"
+                                                data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                                                aria-controls="offcanvasRight"><i
+                                                    class="bx bxs-add-to-queue font-size-16 align-middle me-2"></i>Add
                                                 New</button>
                                             {{-- <button type="button" class="btn btn-primary waves-effect waves-light">Add New</button> --}}
                                         </div>
@@ -70,11 +73,13 @@
                                     <table id="myTable">
                                         <thead>
                                             <tr>
-                                                <th>Company</th>
-                                                <th>Title</th>
-                                                <th>Parent</th>
-                                                <th>Active/Inactive</th>
-                                                <th>Action</th>
+                                                <th>S.No</th>
+                                                <th>Company Name</th>
+                                                <th>Email</th>
+                                                <th>No. Of Users</th>
+                                                <th>Package</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -115,22 +120,27 @@
         <hr>
         <div class="offcanvas-body">
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="mb-3">
-                        <label for="formrow-firstname" class="form-label">Enter Fist Name</label>
-                        <input type="text" class="form-control" placeholder="Enter First Name" id="formrow-inputCity">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-firstname" class="form-label">Enter Fist Name</label>
+                            <input type="text" class="form-control" placeholder="Enter First Name"
+                                id="formrow-inputCity">
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="mb-3">
-                        <label for="formrow-firstname" class="form-label">Enter Middle Name</label>
-                        <input type="text" class="form-control" placeholder="Enter First Name" id="formrow-inputCity">
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-firstname" class="form-label">Enter Middle Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Middle Name"
+                                id="formrow-inputCity">
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="mb-3">
-                        <label for="formrow-firstname" class="form-label">Enter Last Name</label>
-                        <input type="text" class="form-control" placeholder="Enter First Name" id="formrow-inputCity">
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-firstname" class="form-label">Enter Last Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Last Name"
+                                id="formrow-inputCity">
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -138,20 +148,22 @@
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-email" class="form-label">Enter Mobile Number</label>
-                            <input type="text" class="form-control" placeholder="Enter Enter Email" id="formrow-inputCity">
+                            <input type="text" class="form-control" placeholder="Enter Mobile Number"
+                                id="formrow-inputCity">
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-phone" class="form-label">Enter Company Name</label>
-                            <input type="text" class="form-control" placeholder="Enter Phone" id="formrow-inputZip">
+                            <input type="text" class="form-control" placeholder="Enter Company Name"
+                                id="formrow-inputZip">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-inputCity" class="form-label">Enter Email</label>
-                            <input type="text" class="form-control" placeholder="Enter Alternate Phone" id="formrow-inputCity">
+                            <input type="text" class="form-control" placeholder="Enter Email" id="formrow-inputCity">
                         </div>
                     </div>
                 </div>
@@ -160,20 +172,23 @@
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-inputCity" class="form-label">Registration Number</label>
-                            <input type="text" class="form-control" placeholder="Enter Address 1" id="formrow-inputCity">
+                            <input type="text" class="form-control" placeholder="Enter Registration Number"
+                                id="formrow-inputCity">
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-inputZip" class="form-label">Telephone</label>
-                            <input type="text" class="form-control" placeholder="Enter Address 2" id="formrow-inputZip">
+                            <input type="text" class="form-control" placeholder="Enter Telephone"
+                                id="formrow-inputZip">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-Latitude" class="form-label">Website</label>
-                            <input type="text" class="form-control" placeholder="Enter Latitude" id="formrow-inputCity">
+                            <input type="text" class="form-control" placeholder="Enter Website"
+                                id="formrow-inputCity">
                         </div>
                     </div>
                 </div>
@@ -183,8 +198,11 @@
                         <div class="mb-3">
                             <label for="formrow-Longitude" class="form-label">Communication Channel</label>
                             <div class="col-md-12">
-                                <select class="form-control" data-trigger name="choices-single-default" id="formrow-inputState" placeholder="This is a search placeholder">
-
+                                <select class="form-control" name="choices-single-default" id="com_channel"
+                                    placeholder="Select Communication Channel">
+                                    <option value="Call">Call</option>
+                                    <option value="Website">SMS</option>
+                                    <option value="Email">Email</option>
                                 </select>
                             </div>
                         </div>
@@ -194,7 +212,8 @@
                         <div class="mb-3">
                             <label for="formrow-city" class="form-label">Domain</label>
                             <div class="col-md-12">
-                                <select class="form-control" data-trigger name="choices-single-default" id="formrow-inputState" placeholder="This is a search placeholder">
+                                <select class="form-control"  name="choices-single-default"
+                                    id="domain" placeholder="Select Domain">
 
                                 </select>
                             </div>
@@ -203,28 +222,32 @@
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-State" class="form-label">Number of Licences</label>
-                            <input type="text" class="form-control" placeholder="Enter State" id="formrow-inputCity">
+                            <input type="text" class="form-control" placeholder="Enter Number of Licences"
+                                id="formrow-inputCity">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="mb-3">
-                            <label for="formrow-Country" class="form-label">Datalines</label>
-                            <input type="text" class="form-control" placeholder="Enter Country" id="formrow-inputZip">
+                            <label for="formrow-Country" class="form-label">Data Lines</label>
+                            <input type="text" class="form-control" placeholder="Enter Data Line"
+                                id="formrow-inputZip">
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-inputZip" class="form-label">Telebox</label>
-                            <input type="text" class="form-control" placeholder="Enter Zip" id="formrow-inputZip">
+                            <input type="text" class="form-control" placeholder="Enter Telebox"
+                                id="formrow-inputZip">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-State" class="form-label">Address 1</label>
-                            <input type="text" class="form-control" placeholder="Enter State" id="formrow-inputCity">
+                            <input type="text" class="form-control" placeholder="Enter Address 1"
+                                id="formrow-inputCity">
                         </div>
                     </div>
                 </div>
@@ -232,20 +255,73 @@
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-Country" class="form-label">Address 2</label>
-                            <input type="text" class="form-control" placeholder="Enter Country" id="formrow-inputZip">
+                            <input type="text" class="form-control" placeholder="Enter Address 2"
+                                id="formrow-inputZip">
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-inputZip" class="form-label">Latitude</label>
-                            <input type="text" class="form-control" placeholder="Enter Zip" id="formrow-inputZip">
+                            <input type="text" class="form-control" placeholder="Enter Latitude"
+                                id="formrow-inputZip">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="mb-3">
-                            <label for="formrow-State" class="form-label">Longitude </label>
-                            <input type="text" class="form-control" placeholder="Enter State" id="formrow-inputCity">
+                            <label for="formrow-State" class="form-label">Longitude</label>
+                            <input type="text" class="form-control" placeholder="Enter Longitude"
+                                id="formrow-inputCity">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-Country" class="form-label">Country</label>
+                            <input type="text" class="form-control" placeholder="Enter Country"
+                                id="formrow-inputZip">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-inputZip" class="form-label">State/Province</label>
+                            <input type="text" class="form-control" placeholder="Enter State/Province"
+                                id="formrow-inputZip">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-State" class="form-label">City</label>
+                            <input type="text" class="form-control" placeholder="Enter City"
+                                id="formrow-inputCity">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-Country" class="form-label">Subscription Package</label>
+                            <select class="form-control"
+                                    placeholder="Select Subscription Package">
+
+                                </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-inputZip" class="form-label">Support Email</label>
+                            <input type="text" class="form-control" placeholder="Enter State/Province"
+                                id="formrow-inputZip">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label for="formrow-State" class="form-label">Support Contact</label>
+                            <input type="text" class="form-control" placeholder="Enter City"
+                                id="formrow-inputCity">
                         </div>
                     </div>
                 </div>
@@ -275,8 +351,10 @@
     @include('partials.script')
 </body>
 <script>
+    var domain,table;
     $(document).ready(function() {
 
+        
         $("#addfield").click(function() {
             var newRowAdd =
                 '<div id="row" class="row"><div class="input-group m-3">' +
@@ -291,18 +369,53 @@
             // alert("The paragraph was clicked.");
         });
 
+         new Choices("#com_channel", {
+                    removeItemButton: !0,
+                })
 
+           domain =  new Choices("#domain", {
+                    removeItemButton: !0,
+                })
         $("body").on("click", "#DeleteRow", function() {
             $(this).parents("#row").remove();
         })
-        $('#myTable').DataTable({
+       table =  $('#myTable').DataTable({
             dom: 'Bfrtip',
 
 
             buttons: ['copy', 'excel', 'csv', 'pdf', 'print']
 
         });
+        fetchtable();
     });
+
+    function fetchtable() {
+        var settings = {
+            "url": "api/companies",
+            "method": "GET",
+            "timeout": 0,
+        };
+
+        $.ajax(settings).done(function(response) {
+            console.log(response);
+            table.clear().draw();
+            $.each(response, function(index, data) {
+                table.row.add([
+                    index+1,
+                    data.name,
+                    data.email,
+                    '10',
+                    'Silver Package',
+                    '<button type="button"id="edit" name="edit"  onclick="editData(' +
+                    data.id +
+                    ')"  class="btn btn-soft-warning waves-effect waves-light"><i class="bx bx-edit-alt font-size-16 align-middle"></i></button>',
+                    '<button type="button" id="delete" name="delete" onclick="deleteData(' +
+                    data.id +
+                    ')" class="btn btn-soft-danger waves-effect waves-light"><i class="bx bx-trash-alt font-size-16 align-middle"></i></button>'
+                ]).draw(false);
+            });
+        });
+    }
 </script>
 
 </html>
