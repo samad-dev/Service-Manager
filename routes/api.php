@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ImpactController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\PriorityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -169,3 +170,5 @@ Route::post('companies',  [CompanyController::class, 'store']);
 Route::get('companies/{id}',  [CompanyController::class, 'show']);
 Route::put('companies/{id}',  [CompanyController::class, 'update']);
 Route::delete('companies/{id}',  [CompanyController::class, 'destroy']);
+
+Route::get('sendbasicemail',[MailController::class, 'basic_email']);

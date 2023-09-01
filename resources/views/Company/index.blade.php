@@ -123,23 +123,20 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="mb-3">
-                            <label for="formrow-firstname" class="form-label">Enter Fist Name</label>
-                            <input type="text" class="form-control" placeholder="Enter First Name"
-                                id="formrow-inputCity">
+                            <label for="formrow-firstname" class="form-label">Enter First Name</label>
+                            <input type="text" class="form-control" placeholder="Enter First Name" id="first_name">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-firstname" class="form-label">Enter Middle Name</label>
-                            <input type="text" class="form-control" placeholder="Enter Middle Name"
-                                id="formrow-inputCity">
+                            <input type="text" class="form-control" placeholder="Enter Middle Name" id="middle_name">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-firstname" class="form-label">Enter Last Name</label>
-                            <input type="text" class="form-control" placeholder="Enter Last Name"
-                                id="formrow-inputCity">
+                            <input type="text" class="form-control" placeholder="Enter Last Name" id="last_name">
                         </div>
                     </div>
                 </div>
@@ -149,7 +146,7 @@
                         <div class="mb-3">
                             <label for="formrow-email" class="form-label">Enter Mobile Number</label>
                             <input type="text" class="form-control" placeholder="Enter Mobile Number"
-                                id="formrow-inputCity">
+                                id="mobile_number">
                         </div>
                     </div>
 
@@ -157,13 +154,13 @@
                         <div class="mb-3">
                             <label for="formrow-phone" class="form-label">Enter Company Name</label>
                             <input type="text" class="form-control" placeholder="Enter Company Name"
-                                id="formrow-inputZip">
+                                id="company_name">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-inputCity" class="form-label">Enter Email</label>
-                            <input type="text" class="form-control" placeholder="Enter Email" id="formrow-inputCity">
+                            <input type="text" class="form-control" placeholder="Enter Email" id="email">
                         </div>
                     </div>
                 </div>
@@ -173,22 +170,20 @@
                         <div class="mb-3">
                             <label for="formrow-inputCity" class="form-label">Registration Number</label>
                             <input type="text" class="form-control" placeholder="Enter Registration Number"
-                                id="formrow-inputCity">
+                                id="reg_number">
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-inputZip" class="form-label">Telephone</label>
-                            <input type="text" class="form-control" placeholder="Enter Telephone"
-                                id="formrow-inputZip">
+                            <input type="text" class="form-control" placeholder="Enter Telephone" id="telephone">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-Latitude" class="form-label">Website</label>
-                            <input type="text" class="form-control" placeholder="Enter Website"
-                                id="formrow-inputCity">
+                            <input type="text" class="form-control" placeholder="Enter Website" id="website">
                         </div>
                     </div>
                 </div>
@@ -212,8 +207,8 @@
                         <div class="mb-3">
                             <label for="formrow-city" class="form-label">Domain</label>
                             <div class="col-md-12">
-                                <select class="form-control"  name="choices-single-default"
-                                    id="domain" placeholder="Select Domain">
+                                <select class="form-control" name="choices-single-default" id="domain"
+                                    placeholder="Select Domain">
 
                                 </select>
                             </div>
@@ -223,7 +218,7 @@
                         <div class="mb-3">
                             <label for="formrow-State" class="form-label">Number of Licences</label>
                             <input type="text" class="form-control" placeholder="Enter Number of Licences"
-                                id="formrow-inputCity">
+                                id="license">
                         </div>
                     </div>
                 </div>
@@ -231,23 +226,20 @@
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-Country" class="form-label">Data Lines</label>
-                            <input type="text" class="form-control" placeholder="Enter Data Line"
-                                id="formrow-inputZip">
+                            <input type="text" class="form-control" placeholder="Enter Data Line" id="datalines">
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-inputZip" class="form-label">Telebox</label>
-                            <input type="text" class="form-control" placeholder="Enter Telebox"
-                                id="formrow-inputZip">
+                            <input type="text" class="form-control" placeholder="Enter Telebox" id="telebox">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-State" class="form-label">Address 1</label>
-                            <input type="text" class="form-control" placeholder="Enter Address 1"
-                                id="formrow-inputCity">
+                            <input type="text" class="form-control" placeholder="Enter Address 1" id="address1">
                         </div>
                     </div>
                 </div>
@@ -255,23 +247,20 @@
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-Country" class="form-label">Address 2</label>
-                            <input type="text" class="form-control" placeholder="Enter Address 2"
-                                id="formrow-inputZip">
+                            <input type="text" class="form-control" placeholder="Enter Address 2" id="address2">
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-inputZip" class="form-label">Latitude</label>
-                            <input type="text" class="form-control" placeholder="Enter Latitude"
-                                id="formrow-inputZip">
+                            <input type="text" class="form-control" placeholder="Enter Latitude" id="lat">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-State" class="form-label">Longitude</label>
-                            <input type="text" class="form-control" placeholder="Enter Longitude"
-                                id="formrow-inputCity">
+                            <input type="text" class="form-control" placeholder="Enter Longitude" id="lng">
                         </div>
                     </div>
                 </div>
@@ -279,8 +268,7 @@
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-Country" class="form-label">Country</label>
-                            <input type="text" class="form-control" placeholder="Enter Country"
-                                id="formrow-inputZip">
+                            <input type="text" class="form-control" placeholder="Enter Country" id="country">
                         </div>
                     </div>
 
@@ -288,14 +276,13 @@
                         <div class="mb-3">
                             <label for="formrow-inputZip" class="form-label">State/Province</label>
                             <input type="text" class="form-control" placeholder="Enter State/Province"
-                                id="formrow-inputZip">
+                                id="state">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-State" class="form-label">City</label>
-                            <input type="text" class="form-control" placeholder="Enter City"
-                                id="formrow-inputCity">
+                            <input type="text" class="form-control" placeholder="Enter City" id="city">
                         </div>
                     </div>
                 </div>
@@ -303,25 +290,23 @@
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-Country" class="form-label">Subscription Package</label>
-                            <select class="form-control"
-                                    placeholder="Select Subscription Package">
+                            <select class="form-control" placeholder="Select Subscription Package" id="subscription">
 
-                                </select>
+                            </select>
                         </div>
                     </div>
 
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-inputZip" class="form-label">Support Email</label>
-                            <input type="text" class="form-control" placeholder="Enter State/Province"
-                                id="formrow-inputZip">
+                            <input type="text" class="form-control" placeholder="Enter Email" id="support_email">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="mb-3">
                             <label for="formrow-State" class="form-label">Support Contact</label>
-                            <input type="text" class="form-control" placeholder="Enter City"
-                                id="formrow-inputCity">
+                            <input type="text" class="form-control" placeholder="Enter Contact"
+                                id="support_contact">
                         </div>
                     </div>
                 </div>
@@ -330,7 +315,7 @@
                         {{-- <label for="example-text-input" class="col-md-2 col-form-label">Domain Members</label> --}}
                         <div class="col-md-6">
                             <div id="fields">
-
+                                <input type="text" name="hidded" id="hidden" hidden>
                             </div>
                         </div>
                     </div>
@@ -340,7 +325,8 @@
                         <label for="example-text-input" class="col-md-10 col-form-label"></label>
                         <div class="col-md-2">
 
-                            <button type="button" class="btn btn-primary waves-effect waves-light">Save</button>
+                            <button type="button" onclick="save()"
+                                class="btn btn-primary waves-effect waves-light">Save</button>
                         </div>
                     </div>
                 </div>
@@ -351,10 +337,10 @@
     @include('partials.script')
 </body>
 <script>
-    var domain,table;
+    var domain, table,subscription;
     $(document).ready(function() {
 
-        
+
         $("#addfield").click(function() {
             var newRowAdd =
                 '<div id="row" class="row"><div class="input-group m-3">' +
@@ -369,17 +355,46 @@
             // alert("The paragraph was clicked.");
         });
 
-         new Choices("#com_channel", {
-                    removeItemButton: !0,
-                })
+        new Choices("#com_channel", {
+            removeItemButton: !0,
+        })
 
-           domain =  new Choices("#domain", {
-                    removeItemButton: !0,
-                })
+        domain = new Choices("#domain", {
+            removeItemButton: !0,
+        })
+        subscription = new Choices("#subscription", {
+            removeItemButton: !0,
+        })
+        $.ajax({
+            url: "api/domains",
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                
+                console.log(response);
+                domain.setChoices(response,
+                    'id',
+                    'title',
+                    false, );
+            }
+        });
+        $.ajax({
+            url: "api/subscription-packages",
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                
+                console.log(response);
+                subscription.setChoices(response,
+                    'id',
+                    'title',
+                    false, );
+            }
+        });
         $("body").on("click", "#DeleteRow", function() {
             $(this).parents("#row").remove();
         })
-       table =  $('#myTable').DataTable({
+        table = $('#myTable').DataTable({
             dom: 'Bfrtip',
 
 
@@ -401,7 +416,7 @@
             table.clear().draw();
             $.each(response, function(index, data) {
                 table.row.add([
-                    index+1,
+                    index + 1,
                     data.name,
                     data.email,
                     '10',
@@ -416,6 +431,118 @@
             });
         });
     }
+
+    function save() {
+        var settings = {
+            "url": "api/companies",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({
+                "name": document.getElementById("company_name").value,
+                "email":document.getElementById("email").value,
+                "telephon":document.getElementById("telephone").value,
+                "mobile":document.getElementById("mobile_number").value,
+                "address_1":document.getElementById("address1").value,
+                "address_2":document.getElementById("address2").value,
+                "city_id":document.getElementById("city").value,
+                "state_id": document.getElementById("state").value,
+                "country_id": document.getElementById("country").value,
+                "zipcode":"321",
+                "status": 1,
+                "registration_number": document.getElementById("reg_number").value,
+                "first_name": document.getElementById("first_name").value,
+                "middle_name":document.getElementById("middle_name").value,
+                "last_name": document.getElementById("last_name").value,
+                "website": document.getElementById("website").value,
+                "communication": document.getElementById("com_channel").value,
+                "datalines":document.getElementById("datalines").value,
+                "telebox": document.getElementById("telebox").value,
+                "domain_id": document.getElementById("domain").value,
+                "licences": document.getElementById("license").value,
+                "latitude": document.getElementById("lat").value,
+                "longitude":document.getElementById("lng").value,
+                "support_email":document.getElementById("support_email").value,
+                "support_contact":document.getElementById("support_contact").value,
+                "subscription_id": document.getElementById("subscription").value,
+            }),
+        };
+        $.ajax({
+                ...settings,
+                statusCode: {
+                    200: function(response) {
+                        console.log(response);
+                        $('#myModal').modal('hide');
+                        console.log("Request was successful");
+                        // document.getElementById('example-text-input').value = "";
+                        document.getElementById('hidden').value = "";
+                        fetchtable();
+                        Swal.fire(
+                            'Success!',
+                            'Company Created Successfully',
+                            'success'
+                        )
+                    },
+                    
+                },
+                success: function(data) {
+                    // $('#myModal').reset();
+                    // Additional success handling if needed
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    console.log(errorThrown);
+                    Swal.fire(
+                        'Server Error!',
+                        'Company Not Created',
+                        'error'
+                    )
+
+                    // console.log("Request failed with status code: " + xhr.status);
+                }
+            });
+    }   
+
+    function deleteData(id) {
+
+// alert(id);
+var settings = {
+    "url": "api/companies/" + id + "",
+    "method": "DELETE",
+    "timeout": 0,
+};
+
+$.ajax({
+    ...settings,
+    statusCode: {
+        200: function(response) {
+            console.log(response);
+            // $('#myModal').modal('hide');
+            // console.log("Request was successful");
+            fetchtable();
+            Swal.fire(
+                'Success!',
+                'Company Deleted Successfully',
+                'success'
+            )
+        },
+        // Add more status code handlers as needed
+    },
+    success: function(data) {
+        // Additional success handling if needed
+    },
+    error: function(xhr, textStatus, errorThrown) {
+        Swal.fire(
+            'Server Error!',
+            'Company Not Deleted',
+            'error'
+        )
+
+        // console.log("Request failed with status code: " + xhr.status);
+    }
+});
+};
 </script>
 
 </html>
