@@ -103,34 +103,6 @@
 
     <!-- JAVASCRIPT -->
     <!-- right offcanvas -->
-    <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header">
-            <h5 id="offcanvasRightLabel">Create Designation</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <hr>
-        <div class="offcanvas-body">
-            <div class="row">
-                <div class="col-12">
-                    <div class="mb-3 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">Title</label>
-                        <div class="col-md-10">
-                            <input class="form-control" type="text" placeholder="Enter Title" id="example-text-input">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="mb-3 row">
-                    <div class="col-md-10">
-                        <input class="form-control" type="hidden" id="hidden" name="hidden" value="0">
-                        <!-- <input type="hidden" id="postId" name="postId" value="34657" /> -->
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
 
     <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
         data-bs-scroll="true">
@@ -158,6 +130,9 @@
                                     <label class="form-check-label" for="active">Active/Inactive</label>
                                 </div>
                                 <span class="help-block"></span>
+
+                                <input class="form-control" type="hidden" id="hidden" name="hidden" value="0">
+
                             </div>
                         </div>
                     </div>
@@ -211,7 +186,7 @@ function fetchtable() {
         $.each(response, function(index, data) {
             table.row.add([
                 index + 1,
-                data.company_id,        
+                data.company_id,
                 data.title,
                 '<button type="button"id="edit" name="edit"  onclick="editData(' +
                 data.id +
@@ -225,35 +200,19 @@ function fetchtable() {
 }
 // function fetchtable() {
 //     var settings = {
-//         "url": "api/designations",
+//         "url": "http://localhost:8000/api/designations",
 //         "method": "GET",
 //         "timeout": 0,
 //     };
 
-//     $.ajax(settings).done(function(response) {
-//         console.log(response);
-//         table.clear().draw();
-//         $.each(response, function(index, data) {
-//             table.row.add([
-//                 index + 1,
-//                 data.company,
-//                 data.title,
-//                 '<button type="button"id="edit" name="edit"  onclick="editData(' +
-//                 data.id +
-//                 ')"  class="btn btn-soft-warning waves-effect waves-light"><i class="bx bx-edit-alt font-size-16 align-middle"></i></button>',
-//                 '<button type="button" id="delete" name="delete" onclick="deleteData(' +
-//                 data.id +
-//                 ')" class="btn btn-soft-danger waves-effect waves-light"><i class="bx bx-trash-alt font-size-16 align-middle"></i></button>'
-//             ]).draw(false);
-//         });
-//     });
-// }
 function submit() {
     var update_id = document.getElementById("hidden").value;
     console.log(update_id);
     if (update_id == 0) {
         var form = new FormData();
+        form.append("company_id", "0");
         form.append("title", document.getElementById('example-text-input').value);
+        form.append("active", "1");
 
         var settings = {
             "url": "api/designations",
@@ -310,7 +269,7 @@ function submit() {
                 "company_id": 1,
                 "title": document.getElementById('example-text-input').value,
                 "active": 1
-                
+
             }),
         };
 

@@ -69,6 +69,7 @@
                                                 <th>S.No</th>
                                                 <th>Company</th>
                                                 <th>Title</th>
+                                                <!-- <th>Per_Roles</th> -->
                                                 <th>Edit</th>
                                                 <th>Delete</th>
                                             </tr>
@@ -138,44 +139,27 @@
                             <div class="mb-3 row">
                                 <label for="example-text-input" class="col-md-2 col-form-label">Title</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="text" placeholder="Enter Title"
-                                        id="example-text-input">
+                                    <input class="form-control" type="text" placeholder="Enter Group Title" id="title">
                                 </div>
+                                <input class="form-control" type="hidden" id="hidden" name="hidden" value="0">
+
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="mb-3 row">
-                                <label for="example-text-input" class="col-md-2 col-form-label">Permissions</label>
-                                <div>
-                                    <button type="button" class="btn btn-primary waves-effect waves-light" style="
-                                    height: 35px;
-                                    width: 100px;
-                                    margin-bottom: 10px;
-                                    font-size: small;
-                                ">Select
-                                        all</button>
-                                    <button type="button" class="btn btn-primary waves-effect waves-light" style="
-                                    height: 35px;
-                                    width: 100px;
-                                    margin-bottom: 8px;
-                                    font-size: small;
-                                ">Deselect
-                                        all</button>
-                                </div>
+                                <label for="example-text-input" class="col-md-2 col-form-label">Permission</label>
                                 <div class="col-md-10">
-                                    <input class="form-control" type="text" placeholder="Enter Permissions"
-                                        id="example-text-input">
+
+                                    <select class="form-control" name="members" id="members"
+                                        placeholder="Select Members in Permissions" multiple>
+
+                                    </select>
+
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="mb-3 row">
-                                <div class="col-md-10">
-                                    <input class="form-control" type="hidden" id="hidden" name="hidden" value="0">
-                                    <!-- <input type="hidden" id="postId" name="postId" value="34657" /> -->
-                                </div>
-                            </div>
-                        </div>
+
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -189,30 +173,46 @@
     @include('partials.script')
 </body>
 <script>
-var table =
-    $(document).ready(function() {
-        $('#myTable').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-                'colvis',
-                {
-                    extend: 'csv',
-                    // Add the custom class to the CSV button
-                },
-                {
-                    extend: 'excel', // Add the custom class to the Excel button
-                },
-                {
-                    extend: 'pdf', // Add the custom class to the Excel button
-                },
-                {
-                    extend: 'print', // Add the custom class to the Excel button
-                }
-                // Add more buttons and classes as needed
-            ]
-        });
-        fetchtable()
+var table = 
+// var members;
+$(document).ready(function() {
+    // $.ajax({
+    //     url: "http://localhost:8000/api/roles",
+    //     type: 'GET',
+    //     dataType: 'json',
+    //     success: function(response) {
+    //         members = new Choices("#members", {
+    //             removeItemButton: !0,
+    //         })
+    //         console.log(response);
+    //         members.setChoices(response,
+    //             'id',
+    //             'title',
+    //             false, );
+    //     }
+    // });
+    table = $('#myTable').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'colvis',
+            {
+                extend: 'csv',
+                // Add the custom class to the CSV button
+            },
+            {
+                extend: 'excel', // Add the custom class to the Excel button
+            },
+            {
+                extend: 'pdf', // Add the custom class to the Excel button
+            },
+            {
+                extend: 'print', // Add the custom class to the Excel button
+            }
+            // Add more buttons and classes as needed
+        ]
     });
+    fetchtable();
+});
 
 function fetchtable() {
     var settings = {
@@ -220,11 +220,13 @@ function fetchtable() {
         "method": "GET",
         "timeout": 0,
     };
+
     $.ajax(settings).done(function(response) {
-        console.log(response);
+        // console.log(response);
         table.clear().draw();
         $.each(response, function(index, data) {
             table.row.add([
+                index + 1,
                 data.company_id,
                 data.title,
                 '<button type="button"id="edit" name="edit"  onclick="editData(' +
@@ -245,6 +247,8 @@ function submit() {
         var form = new FormData();
         form.append("company_id", "0");
         form.append("title", document.getElementById('example-text-input').value);
+        form.append("active", "1");
+
 
         var settings = {
             "url": "api/roles",
@@ -260,7 +264,7 @@ function submit() {
             ...settings,
             statusCode: {
                 200: function(response) {
-                    console.log(response);
+                    // console.log(response);
                     $('#myModal').modal('hide');
                     console.log("Request was successful");
                     document.getElementById('example-text-input').value = "";
@@ -268,7 +272,7 @@ function submit() {
                     fetchtable();
                     Swal.fire(
                         'Success!',
-                        'Type Created Successfully',
+                        'Type Created Successfully', 
                         'success'
                     )
                 },
@@ -288,8 +292,8 @@ function submit() {
                 // console.log("Request failed with status code: " + xhr.status);
             }
         });
+
     } else {
-        alert(update_id);
         var settings = {
             "url": "api/roles/" + update_id + "",
             "method": "PUT",
@@ -300,6 +304,7 @@ function submit() {
             "data": JSON.stringify({
                 "company_id": 0,
                 "title": document.getElementById('example-text-input').value,
+                "active": 1
             }),
         };
 
@@ -315,7 +320,7 @@ function submit() {
                     fetchtable();
                     Swal.fire(
                         'Success!',
-                        'Type updated Successfully',
+                        'Roles updated Successfully',
                         'success'
                     )
                 },
@@ -327,7 +332,7 @@ function submit() {
             error: function(xhr, textStatus, errorThrown) {
                 Swal.fire(
                     'Server Error!',
-                    'Type Not updated',
+                    'Roles Not updated',
                     'error'
                 )
 
@@ -340,7 +345,87 @@ function submit() {
         // alert("Update Records Here");
 
     }
+
 }
+
+function editData(id) {
+    // alert(id);
+    var settings = {
+        "url": "http://localhost:8000/api/roles/" + id + "",
+        "method": "GET",
+        "timeout": 0,
+    };
+
+    $.ajax({
+        ...settings,
+        statusCode: {
+            200: function(response) {
+                console.log(response[0]['title']);
+                document.getElementById('example-text-input').value = response[0]['title'];
+                document.getElementById('hidden').value = response[0]['id'];
+                $('#myModal').modal('show');
+                // document.getElementById("labelc").innerHTML = 'Update'
+
+
+            },
+            // Add more status code handlers as needed
+        },
+        success: function(data) {
+            // Additional success handling if needed
+        },
+        error: function(xhr, textStatus, errorThrown) {
+            Swal.fire(
+                'Server Error!',
+                '',
+                'error'
+            )
+
+            // console.log("Request failed with status code: " + xhr.status);
+        }
+    });
+
+}
+
+
+
+function deleteData(id) {
+
+    var settings = {
+        "url": "http://localhost:8000/api/roles/" + id + "",
+        "method": "DELETE",
+        "timeout": 0,
+    };
+
+    $.ajax({
+        ...settings,
+        statusCode: {
+            200: function(response) {
+                console.log(response);
+                // $('#myModal').modal('hide');
+                // console.log("Request was successful");
+                fetchtable();
+                Swal.fire(
+                    'Success!',
+                    'Roles Deleted Successfully',
+                    'success'
+                )
+            },
+            // Add more status code handlers as needed
+        },
+        success: function(data) {
+            // Additional success handling if needed
+        },
+        error: function(xhr, textStatus, errorThrown) {
+            Swal.fire(
+                'Server Error!',
+                'Business Unit Not Deleted',
+                'error'
+            )
+
+            // console.log("Request failed with status code: " + xhr.status);
+        }
+    });
+};
 </script>
 
 </html>

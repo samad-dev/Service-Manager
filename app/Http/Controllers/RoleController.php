@@ -21,6 +21,9 @@ class RoleController extends Controller
         DB::insert('INSERT INTO roles (company_id, title) VALUES (?, ?)',
             [$data['company_id'], $data['title']]);
 
+        DB::insert('INSERT INTO permission_role (role_id, permission_id) VALUES (?, ?)',
+            [$data['role_id'], $data['permission_id']]);
+
         return response()->json(['message' => 'Role created successfully']);
     }
 

@@ -67,7 +67,7 @@
                                             <tr>
 
                                                 <th>S.No</th>
-                                                <th>Company</th>
+                                                <!-- <th>Company</th> -->
                                                 <th>Title</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
@@ -103,34 +103,7 @@
 
     <!-- JAVASCRIPT -->
     <!-- right offcanvas -->
-    <div class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header">
-            <h5 id="offcanvasRightLabel">Create Permission</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <hr>
-        <div class="offcanvas-body">
-            <div class="row">
-                <div class="col-12">
-                    <div class="mb-3 row">
-                        <label for="example-text-input" class="col-md-2 col-form-label">Title</label>
-                        <div class="col-md-10">
-                            <input class="form-control" type="text" placeholder="Enter Title" id="example-text-input">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="mb-3 row">
-                    <div class="col-md-10">
-                        <input class="form-control" type="hidden" id="hidden" name="hidden" value="0">
-                        <!-- <input type="hidden" id="postId" name="postId" value="34657" /> -->
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
+ 
 
     <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"
         data-bs-scroll="true">
@@ -148,6 +121,7 @@
                                 <div class="col-md-10">
                                     <input class="form-control" type="text" placeholder="Enter Title"
                                         id="example-text-input">
+                                    <input class="form-control" type="hidden" id="hidden" name="hidden" value="0">
                                 </div>
                             </div>
                         </div>
@@ -164,9 +138,9 @@
     @include('partials.script')
 </body>
 <script>
-var table;
+var table =
     $(document).ready(function() {
-       table = $('#myTable').DataTable({
+        table = $('#myTable').DataTable({
             dom: 'Bfrtip',
             buttons: [
                 'colvis',
@@ -202,8 +176,8 @@ function fetchtable() {
         $.each(response, function(index, data) {
             table.row.add([
                 index + 1,
-                data.company,
                 data.title,
+                // data.company_id,
                 '<button type="button"id="edit" name="edit"  onclick="editData(' +
                 data.id +
                 ')"  class="btn btn-soft-warning waves-effect waves-light"><i class="bx bx-edit-alt font-size-16 align-middle"></i></button>',
@@ -220,10 +194,7 @@ function submit() {
     console.log(update_id);
     if (update_id == 0) {
         var form = new FormData();
-        form.append("company_id", "0");
         form.append("title", document.getElementById('example-text-input').value);
-        form.append("active", "1");
-
 
         var settings = {
             "url": "api/permissions",
@@ -267,8 +238,8 @@ function submit() {
                 // console.log("Request failed with status code: " + xhr.status);
             }
         });
-
     } else {
+        alert(update_id);
         var settings = {
             "url": "api/permissions/" + update_id + "",
             "method": "PUT",
@@ -277,9 +248,10 @@ function submit() {
                 "Content-Type": "application/json"
             },
             "data": JSON.stringify({
-                "company_id": 0,
+                // "company_id": 1,
                 "title": document.getElementById('example-text-input').value,
-                "active": 1
+                // "active": 1
+
             }),
         };
 
@@ -291,7 +263,7 @@ function submit() {
                     $('#myModal').modal('hide');
                     document.getElementById('example-text-input').value = "";
                     document.getElementById('hidden').value = "";
-                    // console.log("Request was successful");
+                    console.log("Request was successful");
                     fetchtable();
                     Swal.fire(
                         'Success!',
@@ -320,83 +292,84 @@ function submit() {
         // alert("Update Records Here");
 
     }
-
 }
 
 function editData(id) {
         var settings = {
-            "url": "api/permissions/" + id + "",
+            "url": "http://localhost:8000/api/permissions/" + id + "",
             "method": "GET",
             "timeout": 0,
         };
 
-        $.ajax({
-            ...settings,
-            statusCode: {
-                200: function(response) {
-                    console.log(response[0]['title']);
-                    document.getElementById('example-text-input').value = response[0]['title'];
-                    document.getElementById('hidden').value = response[0]['id'];
-                    $('#myModal').modal('show');
-                    document.getElementById("labelc").innerHTML = 'Update'
+    $.ajax({
+        ...settings,
+        statusCode: {
+            200: function(response) {
+                console.log(response[0]['title']);
+                document.getElementById('example-text-input').value = response[0]['title'];
+                document.getElementById('hidden').value = response[0]['id'];
+                $('#myModal').modal('show');
+                document.getElementById("labelc").innerHTML = 'Update'
 
 
-                },
-                // Add more status code handlers as needed
             },
-            success: function(data) {
-                // Additional success handling if needed
-            },
-            error: function(xhr, textStatus, errorThrown) {
-                Swal.fire(
-                    'Server Error!',
-                    '',
-                    'error'
-                )
+            // Add more status code handlers as needed
+        },
+        success: function(data) {
+            // Additional success handling if needed
+        },
+        error: function(xhr, textStatus, errorThrown) {
+            Swal.fire(
+                'Server Error!',
+                '',
+                'error'
+            )
 
-                // console.log("Request failed with status code: " + xhr.status);
-            }
-        });
-    }
-    function deleteData(id) {
+            // console.log("Request failed with status code: " + xhr.status);
+        }
+    });
+
+}
+
+function deleteData(id) {
 
 alert(id);
 var settings = {
-    "url": "api/permissions/" + id + "",
+    "url": "http://localhost:8000/api/permissions/" + id + "",
     "method": "DELETE",
     "timeout": 0,
 };
 
-$.ajax({
-    ...settings,
-    statusCode: {
-        200: function(response) {
-            console.log(response);
-            // $('#myModal').modal('hide');
-            // console.log("Request was successful");
-            fetchtable();
-            Swal.fire(
-                'Success!',
-                'Status Deleted Successfully',
-                'success'
-            )
+    $.ajax({
+        ...settings,
+        statusCode: {
+            200: function(response) {
+                console.log(response);
+                // $('#myModal').modal('hide');
+                // console.log("Request was successful");
+                fetchtable();
+                Swal.fire(
+                    'Success!',
+                    'Status Deleted Successfully',
+                    'success'
+                )
+            },
+            // Add more status code handlers as needed
         },
-        // Add more status code handlers as needed
-    },
-    success: function(data) {
-        // Additional success handling if needed
-    },
-    error: function(xhr, textStatus, errorThrown) {
-        Swal.fire(
-            'Server Error!',
-            'Type Not Deleted',
-            'error'
-        )
+        success: function(data) {
+            // Additional success handling if needed
+        },
+        error: function(xhr, textStatus, errorThrown) {
+            Swal.fire(
+                'Server Error!',
+                'Type Not Deleted',
+                'error'
+            )
 
-        // console.log("Request failed with status code: " + xhr.status);
-    }
-});
-};
+            // console.log("Request failed with status code: " + xhr.status);
+        }
+    });
+}
 </script>
 
 </html>
